@@ -13,7 +13,7 @@ export class DispatchTask {
     private _curDispatchCount: number = 0;
     private _interval: number = 0;
 
-    get leastDispatchNum(){
+    get leastDispatchNum() {
         return this._maxDispatchCount - this._curDispatchCount;
     }
 
@@ -43,7 +43,7 @@ export class DispatchTask {
         // 本次派出数量
         const dispatchCount = Math.min(
             this._maxDispatchCount - this._curDispatchCount,
-           5,// sporeConfig.maxColumnCount,
+            sporeConfig.maxColumnCount,
             this.from.sporeCount
         );
 
