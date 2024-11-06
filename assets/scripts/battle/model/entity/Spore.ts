@@ -32,7 +32,6 @@ export class Spore extends Entity {
         const x = Math.cos(anger * Math.PI / 180) * hypotenuseLen;
         const y = Math.sin(anger * Math.PI / 180) * hypotenuseLen;
         this._offsetPosition = cc.v2(x, y);
-        console.log(`[${this.id}]${indexOfColumn} of ${columnCount}  `, this._offsetPosition.toString());
     }
 
     public update(dt: number): void {
