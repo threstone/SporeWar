@@ -76,14 +76,15 @@ export default class BattleView extends cc.Component {
     private _touchId: number;
     private _selectBase: EntityNode;
     private touchStart(event: cc.Event.EventTouch) {
-        if (this._touchId != null) {
-            return;
-        }
+        const model = BattleModel.ins();
+        if (model.isBattle !== true) { return; }
+
+        if (this._touchId != null) { return; }
 
         const pos = this.sporeNode.convertToNodeSpaceAR(event.getLocation());
         const baseNodes = this.getTargetBaseNode(pos, 50);
         const selectBase = baseNodes[0];
-        if (selectBase && BattleModel.ins().entityMap.get(selectBase.id).uid === UserVo.ins().uid) {
+        if (selectBase && model.entityMap.get(selectBase.id).uid === UserVo.ins().uid) {
             this._touchId = event.touch.getID();
             this._selectBase = selectBase;
             this._arrow.active = true;
@@ -143,6 +144,8 @@ export default class BattleView extends cc.Component {
 
     private updateEntitys() {
         const model = BattleModel.ins();
+        if (model.isBattle !== true) { return; }
+
         this._entityNodeMap.forEach((entityNode, id) => {
             const entityInfo = model.entityMap.get(id);
             if (!entityInfo) {

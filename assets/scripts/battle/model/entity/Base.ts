@@ -91,4 +91,14 @@ export class Base extends Entity {
             }
         }
     }
+
+    /** 获取为调度的孢子数量 */
+    getUndispathchSporeCount() {
+        let sum = this.sporeCount;
+        for (let index = 0; index < this.dispatchTasks.length; index++) {
+            const task = this.dispatchTasks[index];
+            sum -= task.leastDispatchNum;
+        }
+        return sum;
+    }
 }
