@@ -1,17 +1,18 @@
 import { UserVo } from "../../vo/UserVo";
 import { BattleModel } from "../model/BattleModel";
-import { Base } from "../model/entity/Base";
+import { Building } from "../model/entity/Building";
 import { Spore } from "../model/entity/Spore";
 import { Entity } from "../model/entity/Entity";
-import BaseView from "./entity/BaseView";
+import BuildingView from "./entity/BuildingView";
 import BattleUIView from "./entity/BattleUIView";
 import SporeView from "./entity/SporeView";
+import BaseView from "../../framework/BaseView";
 
 export type EntityNode = cc.Node & { id: number, from: cc.NodePool, view: { updateEntity: (baseInfo: Entity) => void } };
 const { ccclass, property } = cc._decorator;
 
 @ccclass
-export default class BattleView extends cc.Component {
+export default class BattleView extends BaseView {
     @property(cc.Sprite)
     bg: cc.Sprite = null;
 
@@ -43,6 +44,10 @@ export default class BattleView extends cc.Component {
         this._uiView = this.node.getChildByName('uiNode').getComponent(BattleUIView);
     }
 
+    onOpen(...args: any[]): void {
+       
+    }
+
     startBattle() {
         cc.resources.load(BattleModel.ins().mapConfig.bgPath, cc.SpriteFrame, (err, spriteFrame) => {
             this.bg.spriteFrame = spriteFrame;
@@ -70,6 +75,7 @@ export default class BattleView extends cc.Component {
     }
 
     protected update(): void {
+        if (BattleModel.ins().isBattle !== true) { return; }
         this.updateEntitys();
     }
 
@@ -119,8 +125,8 @@ export default class BattleView extends cc.Component {
             return;
         }
         const { dispatchRate } = this._uiView;
-        const base = BattleModel.ins().entityMap.get(selectBase.id) as Base;
-        base.dispatchSpore(dispatchRate, BattleModel.ins().entityMap.get(targetBase.id) as Base);
+        const base = BattleModel.ins().entityMap.get(selectBase.id) as Building;
+        base.dispatchSpore(dispatchRate, BattleModel.ins().entityMap.get(targetBase.id) as Building);
     }
 
     private clearEntitys() {
@@ -144,8 +150,6 @@ export default class BattleView extends cc.Component {
 
     private updateEntitys() {
         const model = BattleModel.ins();
-        if (model.isBattle !== true) { return; }
-
         this._entityNodeMap.forEach((entityNode, id) => {
             const entityInfo = model.entityMap.get(id);
             if (!entityInfo) {
@@ -160,10 +164,10 @@ export default class BattleView extends cc.Component {
                 return;
             }
 
-            if (entityInfo instanceof Base) {
+            if (entityInfo instanceof Building) {
                 const baseNode = this.getBaseEntity();
                 this._entityNodeMap.set(entityInfo.id, baseNode);
-                const view = baseNode.getComponent(BaseView);
+                const view = baseNode.getComponent(BuildingView);
                 view.init(entityInfo);
                 baseNode.id = entityInfo.id;
                 baseNode.view = view;

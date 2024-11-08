@@ -1,19 +1,19 @@
 import { SporeCfg } from "../../../config/SporeCfg";
 import { BattleModel } from "../BattleModel";
-import { Base } from "./Base";
+import { Building } from "./Building";
 import { Entity } from "./Entity";
 
 export class Spore extends Entity {
     private _speed: number;
-    from: Base
-    targetBase: Base;
+    from: Building
+    targetBase: Building;
 
     cfg: SporeCfg;
 
     private _sourcePosition: cc.Vec2;
     private _offsetPosition: cc.Vec2;
 
-    constructor(from: Base, target: Base, indexOfColumn: number, columnCount: number, cfg: SporeCfg) {
+    constructor(from: Building, target: Building, indexOfColumn: number, columnCount: number, cfg: SporeCfg) {
         super(from.uid, BattleModel.ins().entityId, from.position.x, from.position.y);
         this.cfg = cfg;
         this.from = from;
@@ -44,7 +44,7 @@ export class Spore extends Entity {
     }
 
 
-    setTarget(targetBase: Base) {
+    setTarget(targetBase: Building) {
         this.targetBase = targetBase;
     }
 

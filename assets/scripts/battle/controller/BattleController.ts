@@ -1,5 +1,6 @@
 import { Notifier } from "../../framework/notify/Notifier";
 import { NotifyID } from "../../framework/notify/NotifyID";
+import { ViewManager } from "../../manager/ViewManager";
 import { BattleModel } from "../model/BattleModel";
 import BattleView from "../view/BattleView";
 
@@ -23,15 +24,12 @@ export class BattleController {
         this._model.update(dt);
     }
 
-    private startBattle(mapId: number, p1Uid: string, p2Uid: string) {
+    private async startBattle(mapId: number, p1Uid: string, p2Uid: string) {
         if (!this._view) {
-            cc.resources.load('/prefab/battle/BattleView', cc.Prefab, (err, battlePrefab) => {
-                const battleView = cc.instantiate(battlePrefab);
-                this._view = battleView.getComponent(BattleView);
-                cc.director.getScene().getChildByName("Canvas").addChild(battleView);
-                this._model.startBattle(mapId, p1Uid, p2Uid);
-                this._view.startBattle();
-            });
+            const battleView = await ViewManager.ins().openView('/prefab/battle/BattleView');
+            this._model.startBattle(mapId, p1Uid, p2Uid);
+            this._view = battleView.getComponent(BattleView);
+            this._view.startBattle();
         } else {
             this._model.startBattle(mapId, p1Uid, p2Uid);
             this._view.node.active = true;

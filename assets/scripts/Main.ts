@@ -1,18 +1,23 @@
-import { UserVo } from "./vo/UserVo";
 import { Notifier } from "./framework/notify/Notifier";
 import { NotifyID } from "./framework/notify/NotifyID";
 import { Cfg } from "./config/Cfg";
+import { ViewManager } from "./manager/ViewManager";
 import { Robot } from "./battle/model/robot/Robot";
+import { UserVo } from "./vo/UserVo";
 import { BattleModel } from "./battle/model/BattleModel";
 
-const { ccclass, property } = cc._decorator;
+const { ccclass } = cc._decorator;
 
 @ccclass
 export default class Main extends cc.Component {
 
     async start() {
         await this.loadConfig();
-        this.test();
+
+        ViewManager.ins();
+        const robot = new Robot();
+        Notifier.send(NotifyID.StartBattle, 1, UserVo.ins().uid, robot.uid);
+        BattleModel.ins().setRobot(robot);
     }
 
     loadConfig() {
@@ -25,11 +30,5 @@ export default class Main extends cc.Component {
 
     protected update(dt: number): void {
         Notifier.send(NotifyID.GameUpdate, dt);
-    }
-
-    private test() {
-        const robot = new Robot();
-        Notifier.send(NotifyID.StartBattle, 1, UserVo.ins().uid, robot.uid);
-        BattleModel.ins().setRobot(robot);
     }
 }

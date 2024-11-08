@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Base",
+    "_name": "Building",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -85,7 +85,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "baseSp",
+    "_name": "buildingSprite",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -588,7 +588,7 @@
     "sync": false
   },
   {
-    "__type__": "8dfadHQ+p9KrIMkvR0qhPgV",
+    "__type__": "5268e20TdFFw5+qhNHSnWUn",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -598,7 +598,7 @@
     "countLable": {
       "__id__": 6
     },
-    "baseSprite": {
+    "buildingSprite": {
       "__id__": 3
     },
     "progressBar": {

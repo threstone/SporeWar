@@ -1,5 +1,5 @@
 import { MapCfgReader } from "./MapCfg";
-import { BaseCfgReader } from "./BaseCfg";
+import { BuildingCfgReader } from "./BuildingCfg";
 import { SporeCfgReader } from "./SporeCfg";
 
 
@@ -10,9 +10,9 @@ class _Cfg {
     public get Map() : MapCfgReader {
         return this._Map;
     }
-    private _Base = new BaseCfgReader();
-    public get Base() : BaseCfgReader {
-        return this._Base;
+    private _Building = new BuildingCfgReader();
+    public get Building() : BuildingCfgReader {
+        return this._Building;
     }
     private _Spore = new SporeCfgReader();
     public get Spore() : SporeCfgReader {
@@ -20,7 +20,7 @@ class _Cfg {
     }
 
     private keyjs = {};
-    public keyJson = {'Map': 1, 'Base': 1, 'Spore': 1, };
+    public keyJson = {'Map': 1, 'Building': 1, 'Spore': 1, };
     /*async initByMergeJson() {
         //cc.log("Cfg.initByMergeJson start:" + new Date().getTime());
         return new Promise((resolve, reject)=>{

@@ -1,14 +1,14 @@
 import { Cfg } from "../../config/Cfg";
 import { BattleModel } from "./BattleModel";
-import { Base } from "./entity/Base";
+import { Building } from "./entity/Building";
 import { Spore } from "./entity/Spore";
 
 
 
 export class DispatchTask {
 
-    from: Base;
-    targetBase: Base;
+    from: Building;
+    targetBase: Building;
     private _maxDispatchCount: number;
     private _curDispatchCount: number = 0;
     private _interval: number = 0;
@@ -17,7 +17,7 @@ export class DispatchTask {
         return this._maxDispatchCount - this._curDispatchCount;
     }
 
-    constructor(from: Base, targetBase: Base, maxDispatchCount: number) {
+    constructor(from: Building, targetBase: Building, maxDispatchCount: number) {
         this.from = from;
         this.targetBase = targetBase;
         this._maxDispatchCount = maxDispatchCount;

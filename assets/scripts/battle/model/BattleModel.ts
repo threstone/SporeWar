@@ -1,7 +1,7 @@
 import { Cfg } from "../../config/Cfg";
 import { MapCfg } from "../../config/MapCfg";
 import Random from "../../util/Random";
-import { Base } from "./entity/Base";
+import { Building } from "./entity/Building";
 import { Entity } from "./entity/Entity";
 import { Robot } from "./robot/Robot";
 
@@ -22,7 +22,7 @@ export class BattleModel {
     }
 
     entityMap = new Map<number, Entity>();
-    baseMap = new Map<number, Base>();
+    baseMap = new Map<number, Building>();
 
     random = new Random();
 
@@ -43,19 +43,19 @@ export class BattleModel {
 
         mapConfig.selfBase.forEach(info => {
             const id = this.entityId;
-            const base = new Base(p1Uid, id, info);
+            const base = new Building(p1Uid, id, info);
             this.entityMap.set(id, base);
             this.baseMap.set(id, base)
         });
         mapConfig.enemyBase.forEach(info => {
             const id = this.entityId;
-            const base = new Base(p2Uid, id, info);
+            const base = new Building(p2Uid, id, info);
             this.entityMap.set(id, base);
             this.baseMap.set(id, base)
         });
-        mapConfig.mapBase.forEach(info => {
+        mapConfig.mapBuilding.forEach(info => {
             const id = this.entityId;
-            const base = new Base(null, id, info);
+            const base = new Building(null, id, info);
             this.entityMap.set(id, base);
             this.baseMap.set(id, base)
         });
@@ -112,7 +112,7 @@ export class BattleModel {
     }
 
     getBaseListByUid(uid: string) {
-        const result: Base[] = [];
+        const result: Building[] = [];
         this.baseMap.forEach((base) => {
             if (base.uid === uid) {
                 result.push(base);
@@ -123,7 +123,7 @@ export class BattleModel {
 
     /** 排除指定uid的基地列表 */
     getBaseListExcludeUid(uid: string) {
-        const result: Base[] = [];
+        const result: Building[] = [];
         this.baseMap.forEach((base) => {
             if (base.uid !== uid) {
                 result.push(base);

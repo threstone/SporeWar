@@ -1,10 +1,10 @@
-import { BaseCfg } from "../../../config/BaseCfg";
+import { BuildingCfg } from "../../../config/BuildingCfg";
 import { Cfg } from "../../../config/Cfg";
 import { Spore } from "./Spore";
 import { Entity } from "./Entity";
 import { DispatchTask } from "../DispatchTask";
 
-export class Base extends Entity {
+export class Building extends Entity {
 
     createDt: number = 0;
     /** 创建速度 */
@@ -15,14 +15,14 @@ export class Base extends Entity {
     /** 当前数量,单一孢子只需要记录数量就行 */
     sporeCount: number;
 
-    baseConfig: BaseCfg;
+    baseConfig: BuildingCfg;
 
     dispatchTasks: DispatchTask[] = [];
 
     constructor(uid: string, id: number, data: number[]) {
         super(uid, id, data[0], data[1]);
         const baseId = data[2];
-        this.baseConfig = Cfg.Base.get(baseId);
+        this.baseConfig = Cfg.Building.get(baseId);
 
         this.createSpeed = this.baseConfig.createSpeed / 10000;
         this.maxSporeCount = this.baseConfig.maxCount;
@@ -70,7 +70,7 @@ export class Base extends Entity {
         }
     }
 
-    dispatchSpore(dispatchRate: number, targetBase: Base) {
+    dispatchSpore(dispatchRate: number, targetBase: Building) {
         if (this.sporeCount === 0) {
             return;
         }
@@ -79,11 +79,11 @@ export class Base extends Entity {
             const count = Math.floor(this.sporeCount * dispatchRate);
             this.dispatchTasks.push(new DispatchTask(this, targetBase, count));
         } else {
-            task.addDispatchCount((this.sporeCount - task.leastDispatchNum) * dispatchRate);
+            task.addDispatchCount(Math.floor((this.sporeCount - task.leastDispatchNum) * dispatchRate));
         }
     }
 
-    private getTaskByTarget(targetBase: Base) {
+    private getTaskByTarget(targetBase: Building) {
         for (let index = 0; index < this.dispatchTasks.length; index++) {
             const task = this.dispatchTasks[index];
             if (task.targetBase === targetBase) {
