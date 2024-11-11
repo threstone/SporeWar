@@ -1,4 +1,4 @@
-import { Cfg } from "../../config/Cfg";
+import { Cfg } from "../../../config/Cfg";
 import { BattleModel } from "./BattleModel";
 import { Building } from "./entity/Building";
 import { Spore } from "./entity/Spore";

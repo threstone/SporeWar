@@ -1,6 +1,7 @@
 import { MapCfgReader } from "./MapCfg";
 import { BuildingCfgReader } from "./BuildingCfg";
 import { SporeCfgReader } from "./SporeCfg";
+import { StageCfgReader } from "./StageCfg";
 
 
 import LZString = require("../util/lzstring");
@@ -18,9 +19,13 @@ class _Cfg {
     public get Spore() : SporeCfgReader {
         return this._Spore;
     }
+    private _Stage = new StageCfgReader();
+    public get Stage() : StageCfgReader {
+        return this._Stage;
+    }
 
     private keyjs = {};
-    public keyJson = {'Map': 1, 'Building': 1, 'Spore': 1, };
+    public keyJson = {'Map': 1, 'Building': 1, 'Spore': 1, 'Stage': 1, };
     /*async initByMergeJson() {
         //cc.log("Cfg.initByMergeJson start:" + new Date().getTime());
         return new Promise((resolve, reject)=>{

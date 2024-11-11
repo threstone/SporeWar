@@ -1,6 +1,6 @@
-import { Cfg } from "../../config/Cfg";
-import { MapCfg } from "../../config/MapCfg";
-import Random from "../../util/Random";
+import { Cfg } from "../../../config/Cfg";
+import { MapCfg } from "../../../config/MapCfg";
+import Random from "../../../util/Random";
 import { Building } from "./entity/Building";
 import { Entity } from "./entity/Entity";
 import { Robot } from "./robot/Robot";

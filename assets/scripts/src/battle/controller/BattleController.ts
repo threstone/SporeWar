@@ -1,6 +1,6 @@
-import { Notifier } from "../../framework/notify/Notifier";
-import { NotifyID } from "../../framework/notify/NotifyID";
-import { ViewManager } from "../../manager/ViewManager";
+import { Notifier } from "../../../framework/notify/Notifier";
+import { NotifyID } from "../../../framework/notify/NotifyID";
+import { ViewManager } from "../../../manager/ViewManager";
 import { BattleModel } from "../model/BattleModel";
 import BattleView from "../view/BattleView";
 

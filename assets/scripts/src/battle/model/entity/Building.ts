@@ -1,5 +1,5 @@
-import { BuildingCfg } from "../../../config/BuildingCfg";
-import { Cfg } from "../../../config/Cfg";
+import { BuildingCfg } from "../../../../config/BuildingCfg";
+import { Cfg } from "../../../../config/Cfg";
 import { Spore } from "./Spore";
 import { Entity } from "./Entity";
 import { DispatchTask } from "../DispatchTask";

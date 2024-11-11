@@ -6,7 +6,7 @@ import { Entity } from "../model/entity/Entity";
 import BuildingView from "./entity/BuildingView";
 import BattleUIView from "./entity/BattleUIView";
 import SporeView from "./entity/SporeView";
-import BaseView from "../../framework/BaseView";
+import BaseView from "../../../framework/BaseView";
 
 export type EntityNode = cc.Node & { id: number, from: cc.NodePool, view: { updateEntity: (baseInfo: Entity) => void } };
 const { ccclass, property } = cc._decorator;
