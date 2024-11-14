@@ -8,7 +8,7 @@ import BattleUIView from "./entity/BattleUIView";
 import SporeView from "./entity/SporeView";
 import BaseView from "../../../framework/BaseView";
 
-export type EntityNode = cc.Node & { id: number, from: cc.NodePool, view: { updateEntity: (baseInfo: Entity) => void } };
+export type EntityNode = cc.Node & { id: number, from: cc.NodePool, view: { updateEntity: (buildingInfo: Entity) => void } };
 const { ccclass, property } = cc._decorator;
 
 @ccclass
@@ -20,10 +20,10 @@ export default class BattleView extends BaseView {
     sporeNode: cc.Node = null;
 
     @property(cc.Node)
-    baseNode: cc.Node = null;
+    buildingNode: cc.Node = null;
 
     @property(cc.Prefab)
-    base: cc.Prefab = null;
+    buildingPrefab: cc.Prefab = null;
 
     @property(cc.Prefab)
     spore: cc.Prefab = null;
@@ -31,13 +31,13 @@ export default class BattleView extends BaseView {
     private _uiView: BattleUIView;
     private _entityNodeMap: Map<number, EntityNode>;
 
-    private _basePool: cc.NodePool = null;
+    private _buildingPool: cc.NodePool = null;
     private _sporePool: cc.NodePool = null;
 
     private _arrow: cc.Node;
 
     protected onLoad(): void {
-        this._basePool = new cc.NodePool();
+        this._buildingPool = new cc.NodePool();
         this._sporePool = new cc.NodePool();
         this._entityNodeMap = new Map();
         this._arrow = this.node.getChildByName('gameNode').getChildByName('arrow');
@@ -45,11 +45,11 @@ export default class BattleView extends BaseView {
     }
 
     onOpen(...args: any[]): void {
-       
+
     }
 
     startBattle() {
-        cc.resources.load(BattleModel.ins().mapConfig.bgPath, cc.SpriteFrame, (err, spriteFrame) => {
+        cc.resources.load(BattleModel.ins().simulator.mapConfig.bgPath, cc.SpriteFrame, (err, spriteFrame) => {
             this.bg.spriteFrame = spriteFrame;
         });
         this.addEvents();
@@ -75,26 +75,26 @@ export default class BattleView extends BaseView {
     }
 
     protected update(): void {
-        if (BattleModel.ins().isBattle !== true) { return; }
+        if (!BattleModel.ins().simulator) { return; }
         this.updateEntitys();
     }
 
     private _touchId: number;
-    private _selectBase: EntityNode;
+    private _selectBuilding: EntityNode;
     private touchStart(event: cc.Event.EventTouch) {
-        const model = BattleModel.ins();
-        if (model.isBattle !== true) { return; }
+        const simulator = BattleModel.ins().simulator;
+        if (!simulator) { return; }
 
         if (this._touchId != null) { return; }
 
         const pos = this.sporeNode.convertToNodeSpaceAR(event.getLocation());
-        const baseNodes = this.getTargetBaseNode(pos, 50);
-        const selectBase = baseNodes[0];
-        if (selectBase && model.entityMap.get(selectBase.id).uid === UserVo.ins().uid) {
+        const buildingNodes = this.getTargetBuildingNode(pos, 50);
+        const selectBuilding = buildingNodes[0];
+        if (selectBuilding && simulator.entityMap.get(selectBuilding.id).uid === UserVo.ins().uid) {
             this._touchId = event.touch.getID();
-            this._selectBase = selectBase;
+            this._selectBuilding = selectBuilding;
             this._arrow.active = true;
-            this._arrow.setPosition(selectBase.getPosition());
+            this._arrow.setPosition(selectBuilding.getPosition());
             this.touchMove(event);
         }
     }
@@ -102,9 +102,9 @@ export default class BattleView extends BaseView {
     private touchMove(event: cc.Event.EventTouch) {
         if (this._arrow.active === false || this._touchId !== event.touch.getID()) return;
 
-        let position = this.baseNode.convertToNodeSpaceAR(event.getLocation());
-        const baseNodes = this.getTargetBaseNode(position, 100);
-        const targetNode = baseNodes[0];
+        let position = this.buildingNode.convertToNodeSpaceAR(event.getLocation());
+        const buildingNodes = this.getTargetBuildingNode(position, 100);
+        const targetNode = buildingNodes[0];
         if (targetNode) {
             position = targetNode.getPosition()
         }
@@ -114,33 +114,32 @@ export default class BattleView extends BaseView {
     }
 
     private touchEnd(event: cc.Event.EventTouch) {
-        if (this._touchId !== event.touch.getID() || this._selectBase == null) return;
+        if (this._touchId !== event.touch.getID() || this._selectBuilding == null) return;
         const pos = this.sporeNode.convertToNodeSpaceAR(event.getLocation());
-        const targetBase = this.getTargetBaseNode(pos, 100)[0];
-        const selectBase = this._selectBase;
+        const targetBuilding = this.getTargetBuildingNode(pos, 100)[0];
+        const selectBuilding = this._selectBuilding;
         this._arrow.active = false;
         this._touchId = null;
-        this._selectBase = null;
-        if (!targetBase || targetBase === selectBase) {
+        this._selectBuilding = null;
+        if (!targetBuilding || targetBuilding === selectBuilding) {
             return;
         }
         const { dispatchRate } = this._uiView;
-        const base = BattleModel.ins().entityMap.get(selectBase.id) as Building;
-        base.dispatchSpore(dispatchRate, BattleModel.ins().entityMap.get(targetBase.id) as Building);
+        BattleModel.ins().simulator.inputHandler.dispatchSpore(selectBuilding.id, targetBuilding.id, dispatchRate);
     }
 
     private clearEntitys() {
-        this.sporeNode.children.forEach((node) => {
-            this._sporePool.put(node);
-        });
-        this.baseNode.children.forEach((node) => {
-            this._basePool.put(node);
-        });
+        for (let index = this.sporeNode.childrenCount - 1; index >= 0; index--) {
+            this._sporePool.put(this.sporeNode.children[index]);
+        }
+        for (let index = this.buildingNode.childrenCount - 1; index >= 0; index--) {
+            this._buildingPool.put(this.buildingNode.children[index]);
+        }
         this._entityNodeMap.clear();
     }
 
-    private getBaseEntity(): EntityNode {
-        return (this._basePool.get() || cc.instantiate(this.base)) as EntityNode;
+    private getBuildingEntity(): EntityNode {
+        return (this._buildingPool.get() || cc.instantiate(this.buildingPrefab)) as EntityNode;
     }
 
     private getSporeEntity(): EntityNode {
@@ -149,9 +148,9 @@ export default class BattleView extends BaseView {
 
 
     private updateEntitys() {
-        const model = BattleModel.ins();
+        const simulator = BattleModel.ins().simulator;
         this._entityNodeMap.forEach((entityNode, id) => {
-            const entityInfo = model.entityMap.get(id);
+            const entityInfo = simulator.entityMap.get(id);
             if (!entityInfo) {
                 entityNode.from.put(entityNode);
                 this._entityNodeMap.delete(id);
@@ -159,21 +158,21 @@ export default class BattleView extends BaseView {
                 entityNode.view.updateEntity(entityInfo);
             }
         });
-        model.entityMap.forEach((entityInfo) => {
+        simulator.entityMap.forEach((entityInfo) => {
             if (this._entityNodeMap.has(entityInfo.id)) {
                 return;
             }
 
             if (entityInfo instanceof Building) {
-                const baseNode = this.getBaseEntity();
-                this._entityNodeMap.set(entityInfo.id, baseNode);
-                const view = baseNode.getComponent(BuildingView);
+                const buildingNode = this.getBuildingEntity();
+                this._entityNodeMap.set(entityInfo.id, buildingNode);
+                const view = buildingNode.getComponent(BuildingView);
                 view.init(entityInfo);
-                baseNode.id = entityInfo.id;
-                baseNode.view = view;
-                baseNode.view.updateEntity(entityInfo);
-                baseNode.from = this._basePool;
-                baseNode.parent = this.baseNode;
+                buildingNode.id = entityInfo.id;
+                buildingNode.view = view;
+                buildingNode.view.updateEntity(entityInfo);
+                buildingNode.from = this._buildingPool;
+                buildingNode.parent = this.buildingNode;
             } else if (entityInfo instanceof Spore) {
                 const spore = this.getSporeEntity();
                 this._entityNodeMap.set(entityInfo.id, spore);
@@ -188,14 +187,14 @@ export default class BattleView extends BaseView {
         })
     }
 
-    private getTargetBaseNode(position: cc.Vec2, maxDistance: number): EntityNode[] {
+    private getTargetBuildingNode(position: cc.Vec2, maxDistance: number): EntityNode[] {
         const result = [];
-        for (let index = 0; index < this.baseNode.childrenCount; index++) {
-            const base = this.baseNode.children[index];
-            const distance = cc.Vec2.squaredDistance(base.getPosition(), position)
+        for (let index = 0; index < this.buildingNode.childrenCount; index++) {
+            const building = this.buildingNode.children[index];
+            const distance = cc.Vec2.squaredDistance(building.getPosition(), position)
             if (distance < maxDistance ** 2) {
-                result.push(base);
-                (base as any).__distance = distance;
+                result.push(building);
+                (building as any).__distance = distance;
             }
         }
 

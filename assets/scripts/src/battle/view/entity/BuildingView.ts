@@ -15,23 +15,24 @@ export default class BuildingView extends cc.Component {
     @property(cc.ProgressBar)
     progressBar: cc.ProgressBar = null;
 
-    init(baseInfo: Building) {
-        cc.resources.load(baseInfo.baseConfig.buildingBg, cc.SpriteFrame, (err, spriteFrame) => {
+    init(buildingInfo: Building) {
+        cc.resources.load(buildingInfo.buildingConfig.buildingBg, cc.SpriteFrame, (err, spriteFrame) => {
             this.buildingSprite.spriteFrame = spriteFrame;
         });
     }
 
-    updateEntity(baseInfo: Building) {
-        this.node.setPosition(baseInfo.position);
-        this.countLable.string = `${baseInfo.sporeCount}`;
+    updateEntity(buildingInfo: Building) {
+        this.node.setPosition(buildingInfo.position);
+        this.countLable.string = `${buildingInfo.sporeCount}`;
         this.progressBar.node.active = false;
-        if (baseInfo.uid) {
+        this.countLable.node.color = cc.Color.WHITE;
+        if (buildingInfo.uid) {
             const selfUid = UserVo.ins().uid;
-            this.countLable.node.color = baseInfo.uid === selfUid ? cc.Color.GREEN : cc.Color.RED;
+            this.countLable.node.color = buildingInfo.uid === selfUid ? cc.Color.GREEN : cc.Color.RED;
             // 仅己方的显示进度条
-            if (baseInfo.uid === selfUid) {
-                this.progressBar.node.active = baseInfo.sporeCount < baseInfo.maxSporeCount;
-                this.progressBar.progress = baseInfo.createDt / baseInfo.createSpeed;
+            if (buildingInfo.uid === selfUid) {
+                this.progressBar.node.active = buildingInfo.sporeCount < buildingInfo.maxSporeCount;
+                this.progressBar.progress = buildingInfo.createDt / buildingInfo.createSpeed;
             }
         }
     }

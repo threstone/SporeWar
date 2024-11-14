@@ -12,7 +12,6 @@ export default class HallView extends BaseView {
     @property(cc.Prefab)
     stageBtnPrefab: cc.Prefab = null;
 
-
     onOpen(): void {
         Cfg.Stage.getArray().forEach((cfg) => {
             const item = cc.instantiate(this.stageBtnPrefab);

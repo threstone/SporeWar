@@ -15,18 +15,18 @@ export class Building extends Entity {
     /** 当前数量,单一孢子只需要记录数量就行 */
     sporeCount: number;
 
-    baseConfig: BuildingCfg;
+    buildingConfig: BuildingCfg;
 
     dispatchTasks: DispatchTask[] = [];
 
     constructor(uid: string, id: number, data: number[]) {
         super(uid, id, data[0], data[1]);
-        const baseId = data[2];
-        this.baseConfig = Cfg.Building.get(baseId);
+        const buildingId = data[2];
+        this.buildingConfig = Cfg.Building.get(buildingId);
 
-        this.createSpeed = this.baseConfig.createSpeed / 10000;
-        this.maxSporeCount = this.baseConfig.maxCount;
-        this.sporeCount = this.baseConfig.startCount;
+        this.createSpeed = this.buildingConfig.createSpeed / 10000;
+        this.maxSporeCount = this.buildingConfig.maxCount;
+        this.sporeCount = this.buildingConfig.startCount;
     }
 
     update(dt: number) {
@@ -70,23 +70,23 @@ export class Building extends Entity {
         }
     }
 
-    dispatchSpore(dispatchRate: number, targetBase: Building) {
+    dispatchSpore(dispatchRate: number, targetBuilding: Building) {
         if (this.sporeCount === 0) {
             return;
         }
-        const task = this.getTaskByTarget(targetBase);
+        const task = this.getTaskByTarget(targetBuilding);
         if (!task) {
             const count = Math.floor(this.sporeCount * dispatchRate);
-            this.dispatchTasks.push(new DispatchTask(this, targetBase, count));
+            this.dispatchTasks.push(new DispatchTask(this, targetBuilding, count));
         } else {
             task.addDispatchCount(Math.floor((this.sporeCount - task.leastDispatchNum) * dispatchRate));
         }
     }
 
-    private getTaskByTarget(targetBase: Building) {
+    private getTaskByTarget(targetBuilding: Building) {
         for (let index = 0; index < this.dispatchTasks.length; index++) {
             const task = this.dispatchTasks[index];
-            if (task.targetBase === targetBase) {
+            if (task.targetBuilding === targetBuilding) {
                 return task;
             }
         }

@@ -6,7 +6,7 @@ import { Entity } from "./Entity";
 export class Spore extends Entity {
     private _speed: number;
     from: Building
-    targetBase: Building;
+    targetBuilding: Building;
 
     cfg: SporeCfg;
 
@@ -14,10 +14,10 @@ export class Spore extends Entity {
     private _offsetPosition: cc.Vec2;
 
     constructor(from: Building, target: Building, indexOfColumn: number, columnCount: number, cfg: SporeCfg) {
-        super(from.uid, BattleModel.ins().entityId, from.position.x, from.position.y);
+        super(from.uid, BattleModel.ins().simulator.entityId, from.position.x, from.position.y);
         this.cfg = cfg;
         this.from = from;
-        this.targetBase = target;
+        this.targetBuilding = target;
         this._speed = this.cfg.speed;
 
         this._sourcePosition = cc.v2(from.position.x, from.position.y);
@@ -35,31 +35,31 @@ export class Spore extends Entity {
     }
 
     public update(dt: number): void {
-        if (cc.Vec2.squaredDistance(this.targetBase.position, this.position) < 16) {
-            this.onEnterBase();
+        if (cc.Vec2.squaredDistance(this.targetBuilding.position, this.position) < 16) {
+            this.onEnterBuilding();
             return;
         }
 
-        this.closeBase(dt);
+        this.closeBuilding(dt);
     }
 
 
-    setTarget(targetBase: Building) {
-        this.targetBase = targetBase;
+    setTarget(targetBuilding: Building) {
+        this.targetBuilding = targetBuilding;
     }
 
-    protected onEnterBase() {
-        this.targetBase.onSporeEnter(this);
+    protected onEnterBuilding() {
+        this.targetBuilding.onSporeEnter(this);
         this.isDestroy = true;
     }
 
-    protected closeBase(dt: number) {
+    protected closeBuilding(dt: number) {
         // 靠近目标
         const distance = this._speed * dt;
-        const dir = this.targetBase.position.sub(this._sourcePosition);
+        const dir = this.targetBuilding.position.sub(this._sourcePosition);
         this._sourcePosition.addSelf(dir.mul(distance / dir.len()));
 
-        const minDistance = Math.min(this._sourcePosition.sub(this.from.position).len(), this._sourcePosition.sub(this.targetBase.position).len());
+        const minDistance = Math.min(this._sourcePosition.sub(this.from.position).len(), this._sourcePosition.sub(this.targetBuilding.position).len());
         const offsetScaler = Math.min(1, minDistance / 30);
         this.position.set(this._sourcePosition.add(this._offsetPosition.mul(offsetScaler)));
     }

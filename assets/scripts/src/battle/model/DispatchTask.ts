@@ -8,7 +8,7 @@ import { Spore } from "./entity/Spore";
 export class DispatchTask {
 
     from: Building;
-    targetBase: Building;
+    targetBuilding: Building;
     private _maxDispatchCount: number;
     private _curDispatchCount: number = 0;
     private _interval: number = 0;
@@ -17,9 +17,9 @@ export class DispatchTask {
         return this._maxDispatchCount - this._curDispatchCount;
     }
 
-    constructor(from: Building, targetBase: Building, maxDispatchCount: number) {
+    constructor(from: Building, targetBuilding: Building, maxDispatchCount: number) {
         this.from = from;
-        this.targetBase = targetBase;
+        this.targetBuilding = targetBuilding;
         this._maxDispatchCount = maxDispatchCount;
     }
 
@@ -48,11 +48,11 @@ export class DispatchTask {
         );
 
         // 生成派出的孢子
-        const model = BattleModel.ins();
+        const simulator = BattleModel.ins().simulator;
 
         for (let index = 0; index < dispatchCount; index++) {
-            const spore = new Spore(this.from, this.targetBase, index, dispatchCount, sporeConfig);
-            model.entityMap.set(spore.id, spore);
+            const spore = new Spore(this.from, this.targetBuilding, index, dispatchCount, sporeConfig);
+            simulator.entityMap.set(spore.id, spore);
         }
 
 

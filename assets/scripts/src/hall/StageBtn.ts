@@ -19,14 +19,11 @@ export default class StageBtn extends cc.Component {
         this._cfg = cfg;
     }
 
-    onClick(){
-        const battleModel =BattleModel.ins();
-        if(battleModel.isBattle){
+    onClick() {
+        const simulator = BattleModel.ins().simulator;
+        if (simulator) {
             return;
         }
-        const robot = new Robot();
-        Notifier.send(NotifyID.StartBattle, this._cfg.mapId, UserVo.ins().uid, robot.uid);
-        battleModel.setRobot(robot);
-
+        Notifier.send(NotifyID.StartBattle, this._cfg.mapId, UserVo.ins().uid, Robot.uid);
     }
 }
