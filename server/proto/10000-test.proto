@@ -1,0 +1,50 @@
+syntax = "proto3";
+package TestPto;
+
+// 增加道具
+message C_TEST_ADD_ITEMS{
+	int32 cmd = 1[default = 10000];
+	int32 scmd = 2[default = 1];
+	uint32 itemId = 3;
+	int64 count = 4;
+}
+
+// 代码更新
+message C_TEST_UPDATE_CODE{
+	int32 cmd = 1[default = 10000];
+	int32 scmd = 2[default = 3];
+}
+
+// 服务器时间修改
+message C_TEST_MODIFY_SERVER_TIME{
+	int32 cmd = 1[default = 10000];
+	int32 scmd = 2[default = 4];
+	uint64 time = 3; // 毫秒时间戳
+}
+
+// 服务器重启
+message C_TEST_RESTART_SERVER{
+	int32 cmd = 1[default = 10000];
+	int32 scmd = 2[default = 5];
+}
+
+// 获取服务器时间信息
+message C_TEST_SERVER_TIME_INFO{
+	int32 cmd = 1[default = 10000];
+	int32 scmd = 2[default = 6];
+}
+
+// 服务器时间信息
+message S_TEST_SERVER_TIME_INFO{
+	int32 cmd = 1[default = 10000];
+	int32 scmd = 2[default = 7];
+	uint64 serverTime = 3; // 服务器时间戳(毫秒)
+	int32 openServerDay = 4; // 开服天数
+	int32 openServerWeek = 5;// 开服周数
+}
+
+// 清空账号数据
+message C_TEST_CLEAR_ACCOUNT_DATA{
+	int32 cmd = 1[default = 10000];
+	int32 scmd = 2[default = 8];
+}

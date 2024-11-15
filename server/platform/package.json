@@ -1,0 +1,44 @@
+{
+  "name": "platform",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "mocha ./dist/**/test/*.test.js",
+    "start_dev": "stone startAll dev",
+    "start_dev_cb": "stone startAll dev_cb",
+    "start_dev_wj": "stone startAll dev_wj",
+    "start": "stone startAll prod -b",
+    "stop": "stone stopAll prod",
+    "list": "stone list prod",
+    "updateRpcDesc": "echo 生成并更新rpc类型描述文件 && stone updateRpcDesc"
+  },
+  "author": "author",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.14.2",
+    "koa-bodyparser": "^4.4.1",
+    "koa-router": "^12.0.0",
+    "mysql2": "^2.3.0",
+    "redis": "^3.0.2",
+    "sequelize": "5.21.11",
+    "sequelize-typescript": "1.1.0",
+    "stone-framework": "^1.0.28",
+    "uuid": "^8.3.1"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.13.9",
+    "@types/koa-bodyparser": "^4.3.10",
+    "@types/koa-router": "^7.4.5",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^14.18.36",
+    "@types/redis": "^4.0.11",
+    "@types/sequelize": "^4.28.8",
+    "@types/uuid": "^10.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.5.0",
+    "@typescript-eslint/parser": "^4.5.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "typescript": "^4.4.4"
+  }
+}

@@ -1,0 +1,26 @@
+{
+    "dev": {
+        "master": {
+            "port": 9900,
+            "ip": "127.0.0.1",
+            "rpcPorts": [
+                9901
+            ],
+            "isCreateRpcDeclare": true
+        },
+        "login": [
+            {
+                "nodeId": "login",
+                "autuResume": false,
+                "logTrace": true
+            }
+        ],
+        "manager": [
+            {
+                "nodeId": "manager",
+                "autuResume": false,
+                "logTrace": true
+            }
+        ]
+    }
+}

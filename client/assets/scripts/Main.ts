@@ -1,7 +1,10 @@
 import { Notifier } from "./framework/notify/Notifier";
 import { NotifyID } from "./framework/notify/NotifyID";
 import { Cfg } from "./config/Cfg";
-import { ViewManager } from "./manager/ViewManager";
+import { ViewMgr } from "./manager/ViewMgr";
+import { MessageMgr } from "./manager/MessageMgr";
+import * as CommonProto from "./framework/proto/CommonProto";
+
 
 const { ccclass } = cc._decorator;
 
@@ -11,7 +14,8 @@ export default class Main extends cc.Component {
     async start() {
         await this.loadConfig();
 
-        ViewManager.ins();
+        ViewMgr.ins();
+        MessageMgr.init(CommonProto);
     }
 
     loadConfig() {

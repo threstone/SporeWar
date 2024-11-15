@@ -1,0 +1,37 @@
+syntax = "proto3";
+package SystemPto;
+
+// 服务端出错
+message S_ERROR{
+	int32 cmd = 1[default = 0]; 
+	int32 scmd = 2[default = 1];
+	int32 code = 3; // 错误码
+	string msg = 4; // 错误信息
+}
+
+// 心跳
+message C_HEART_BEAT{
+	int32 cmd = 1[default = 0]; 
+	int32 scmd = 2[default = 2];
+}
+
+// 心跳
+message S_HEART_BEAT{
+	int32 cmd = 1[default = 0]; 
+	int32 scmd = 2[default = 3];
+	int64 serverTime = 3;
+}
+
+// 踢下线
+message S_KICK{
+	int32 cmd = 1[default = 0]; 
+	int32 scmd = 2[default = 4];
+	string reason = 3;
+}
+
+// 新的一天
+message S_NEW_DAY{
+	int32 cmd = 1[default = 0]; 
+	int32 scmd = 2[default = 5];
+	uint64 dayStartMs = 3;//一天开启的时间戳
+}

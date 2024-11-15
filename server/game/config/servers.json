@@ -1,0 +1,52 @@
+{
+    "dev": {
+        "master": {
+            "ip": "127.0.0.1",
+            "port": 9910,
+            "rpcPorts": [
+                9911
+            ],
+            "isCreateRpcDeclare": true
+        },
+        "gate": [
+            {
+                "nodeId": "gate1",
+                "autuResume": false,
+                "ip": "192.168.20.61",
+                "port": 20001,
+                "logTrace": true,
+                "logLevel": "all"
+            },
+            {
+                "nodeId": "gate2",
+                "autuResume": false,
+                "ip": "192.168.20.61",
+                "port": 20002,
+                "logTrace": true,
+                "logLevel": "all"
+            }
+        ],
+        "logic": [
+            {
+                "nodeId": "logic1",
+                "autuResume": false,
+                "logTrace": true,
+                "logLevel": "all"
+            },
+            {
+                "nodeId": "logic2",
+                "autuResume": false,
+                "logTrace": true,
+                "logLevel": "all"
+            }
+        ],
+        "game": [
+            {
+                "nodeId": "game",
+                "autuResume": false,
+                "logTrace": true,
+                "logLevel": "all"
+            }
+        ]
+    }
+}

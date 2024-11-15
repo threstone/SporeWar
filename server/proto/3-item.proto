@@ -1,0 +1,78 @@
+syntax = "proto3";
+package ItemPto;
+
+// 道具信息请求
+message C_GET_ITEMS_INFO{
+	int32 cmd = 1[default = 3];
+	int32 scmd = 2[default = 1];
+}
+
+// 道具信息回应
+message S_GET_ITEMS_INFO{
+	int32 cmd = 1[default = 3];
+	int32 scmd = 2[default = 2];
+	repeated Item items = 3;
+}
+
+// 道具更新通知
+message S_ITEMS_UPDATE{
+	int32 cmd = 1[default = 3];
+	int32 scmd = 2[default = 3];
+	repeated Item items = 3;
+}
+
+// 获取体力相关道具信息
+message C_GET_ENERGY_INFO{
+	int32 cmd = 1[default = 3];
+	int32 scmd = 2[default = 4];
+}
+
+// 体力相关道具信息回应
+message S_GET_ENERGY_INFO{
+	int32 cmd = 1[default = 3];
+	int32 scmd = 2[default = 5];
+	repeated Energy energyList = 3;
+}
+
+// 体力相关道具通知
+message S_ENERGY_UPDATE{
+	int32 cmd = 1[default = 3];
+	int32 scmd = 2[default = 6];
+	Energy energy = 3;
+}
+
+// 使用道具请求
+message C_USE_ITEMS{
+	int32 cmd = 1[default = 3];
+	int32 scmd = 2[default = 7];
+	uint32 itemId = 3;
+	uint64 count = 4;
+	int32 selectIndex = 5; // 用于自选类道具
+}
+
+// 使用道具回应
+message S_USE_ITEMS{
+	int32 cmd = 1[default = 3];
+	int32 scmd = 2[default = 8];
+	repeated Item items = 3;// 道具变动
+}
+
+// 清除新道具标识
+message C_CLEAR_NEW_TAG{
+	int32 cmd = 1[default = 3];
+	int32 scmd = 2[default = 9];
+	uint32 itemId = 3;
+}
+
+message Item{
+	uint32 itemId = 2; // 道具id
+	int64 count = 3; // 数量
+	bool isNew = 4; // 是否新道具
+	uint64 expireTime = 5;//道具过期时间(过期时间戳)
+}
+
+message Energy{
+	uint32 itemId = 2; // 道具id
+	int64 count = 3; // 数量
+	uint64 nextRecoverTime = 4;// 下次恢复时间
+}

@@ -1,0 +1,4 @@
+[
+  {"id":1,"createSpeed":8000,"startCount":100,"maxCount":100,"buildingRadius":30},
+  {"id":2,"createSpeed":10000,"startCount":40,"maxCount":50,"buildingRadius":30}
+]

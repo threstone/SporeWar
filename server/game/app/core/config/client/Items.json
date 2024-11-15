@@ -1,0 +1,4 @@
+[
+  {"id":1,"name":"钻石","desc":"描述","type":0,"iconPath":"texture/icon/item1","quality":0,"isShow":0,"isItem":1},
+  {"id":2,"name":"金币","desc":"描述","type":0,"iconPath":"texture/icon/item2","quality":0,"isShow":0,"isItem":1}
+]

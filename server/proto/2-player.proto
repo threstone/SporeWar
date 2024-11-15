@@ -1,0 +1,75 @@
+syntax = "proto3";
+package PlayerPto;
+// import './3-item.proto';
+
+message LoginInfo {
+	int32 code = 1; // -1:未知错误 0:成功 1:区服未开启 2:切换服务器失败,相同的服务器 3:区服维护中 4:token过期 5:区服被封禁
+	uint32 serverId = 2; // 服务器id
+	string userId = 3;
+	uint32 stageId = 4;
+}
+
+
+// // 修改昵称请求
+// message C_CHANGE_NICKNAME{
+// 	int32 cmd = 1[default = 2];
+// 	int32 scmd = 2[default = 1];
+// 	string newNickname = 3;
+// }
+
+// // 昵称改变
+// message S_CHANGE_NICKNAME{
+// 	int32 cmd = 1[default = 2];
+// 	int32 scmd = 2[default = 2];
+// 	string newNickname = 3;// 当前昵称
+// }
+
+// // 修改头像请求
+// message C_CHANGE_ICON{
+// 	int32 cmd = 1[default = 2];
+// 	int32 scmd = 2[default = 3];
+// 	uint32 icon = 3;
+// }
+
+// // 头像改变
+// message S_CHANGE_ICON{
+// 	int32 cmd = 1[default = 2];
+// 	int32 scmd = 2[default = 4];
+// 	uint32 icon = 3;// 当前头像
+// }
+
+// // 修改头像框请求
+// message C_CHANGE_ICON_BG{
+// 	int32 cmd = 1[default = 2];
+// 	int32 scmd = 2[default = 2];
+// 	uint32 iconBg = 3;
+// }
+
+// // 头像框改变
+// message S_CHANGE_ICON_BG{
+// 	int32 cmd = 1[default = 2];
+// 	int32 scmd = 2[default = 6];
+// 	uint32 iconBg = 3; // 当前头像框
+// }
+
+// // 升级提醒
+// message S_LEVEL_UP{
+// 	int32 cmd = 1[default = 2];
+// 	int32 scmd = 2[default = 7];
+// 	int32 curLevel = 3; // 当前等级
+// 	repeated Item rewards = 4; // 奖励
+// }
+
+// message LoginInfo {
+// 	int32 code = 1; // -1:未知错误 0:成功 1:区服未开启 2:切换服务器失败,相同的服务器 3:区服维护中 4:token过期 5:区服被封禁
+// 	uint32 serverId = 2; // 服务器id
+// 	string userId = 3;
+// 	string nickname = 4;// 昵称
+// 	uint64 lastModifyNameTs = 5;// 上次修改名称时间
+// 	uint32 icon = 6;// 当前佩戴头像
+// 	uint32 stageId = 7;// 当前关卡id
+// 	uint32 iconBg = 8;// 头像框
+// 	uint32 curLevel = 9;//当前等级
+// }
+
+

@@ -1,0 +1,4 @@
+[
+  {"id":1,"buildingBg":"img/battle/building/base1008","createSpeed":8000,"startCount":100,"maxCount":100,"buildingRadius":30},
+  {"id":2,"buildingBg":"img/battle/building/base1014","createSpeed":10000,"startCount":40,"maxCount":50,"buildingRadius":30}
+]

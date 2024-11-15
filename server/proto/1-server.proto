@@ -1,0 +1,54 @@
+syntax = "proto3";
+package ServerPto;
+import './5-player.proto';
+
+// 请求连接
+message C_CONNECT{
+	int32 cmd = 1[default = 1]; 
+	int32 scmd = 2[default = 1];
+	string token = 3; // 登录接口获取到的token
+	uint32 serverId = 4;	// 连接的服务器id
+}
+
+// 连接回应
+message S_CONNECT{
+	int32 cmd = 1[default = 1]; 
+	int32 scmd = 2[default = 2];
+	LoginInfo loginInfo = 3; // 返回的登录信息
+}
+
+// 请求切换服务器
+message C_SWITCH_SERVER {
+	int32 cmd = 1[default = 1]; 
+	int32 scmd = 2[default = 3];
+	string token = 3;
+	uint32 serverId = 4; // 目标服务器id
+}
+
+// 切换服务器回应
+message S_SWITCH_SERVER {
+	int32 cmd = 1[default = 1]; 
+	int32 scmd = 2[default = 4];
+	LoginInfo loginInfo = 3; // 返回的登录信息
+}
+
+// 请求服务器信息
+message C_GET_SERVER_LIST {
+	int32 cmd = 1[default = 1]; 
+	int32 scmd = 2[default = 5];
+}
+
+// 服务器信息回应
+message S_GET_SERVER_LIST {
+	int32 cmd = 1[default = 1]; 
+	int32 scmd = 2[default = 6];
+	repeated ServerInfo list = 3;// 服务器列表
+}
+
+message ServerInfo{
+	uint32 id = 1;
+	string name = 2;
+	int64 startTime = 3;
+	uint32 status = 4;
+	uint32 tag = 5;
+}
