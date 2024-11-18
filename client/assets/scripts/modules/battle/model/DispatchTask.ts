@@ -1,7 +1,7 @@
 import { Cfg } from "../../../config/Cfg";
 import { BattleModel } from "./BattleModel";
-import { Building } from "./entity/Building";
-import { Spore } from "./entity/Spore";
+import { Building } from "./simulator/entity/Building";
+import { Spore } from "./simulator/entity/Spore";
 
 
 

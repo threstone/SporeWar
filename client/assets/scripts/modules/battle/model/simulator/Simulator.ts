@@ -3,16 +3,12 @@ import { MapCfg } from "../../../../config/MapCfg";
 import { Notifier } from "../../../../framework/notify/Notifier";
 import { NotifyID } from "../../../../framework/notify/NotifyID";
 import Random from "../../../../util/Random";
-import { Building } from "../entity/Building";
-import { Entity } from "../entity/Entity";
+import { Building } from "./entity/Building";
+import { Entity } from "./entity/Entity";
 import { Robot } from "../robot/Robot";
 import { InputHandler } from "./inputHandler/InputHandler";
 
 export class Simulator {
-
-    public static frameRate = 120;
-    public static frameInterval = 1 / Simulator.frameRate;
-
     private _incrId: number;
     get entityId() {
         return this._incrId++;
@@ -29,7 +25,20 @@ export class Simulator {
 
     inputHandler: InputHandler;
 
-    startBattle(mapId: number, p1Uid: string, p2Uid: string, seed: number = 0) {
+    frameRate: number;
+    frameInterval: number;
+
+    tk = 0;
+    constructor(frameRate: number) {
+        this.frameRate = frameRate;
+        this.frameInterval = 1 / frameRate;
+        setInterval(() => {
+            console.log(`过去1s tk = `, this.tk);
+            this.tk = 0;
+        }, 1000);
+    }
+
+    startBattle(mapId: number, p1UserId: string, p2UserId: string, seed: number = 0) {
         const mapConfig = Cfg.Map.get(mapId);
         if (!mapConfig) return false;
 
@@ -39,19 +48,19 @@ export class Simulator {
 
         mapConfig.selfBase.forEach(info => {
             const id = this.entityId;
-            const building = new Building(p1Uid, id, info);
+            const building = new Building(p1UserId, id, info, this);
             this.entityMap.set(id, building);
             this.buildingMap.set(id, building)
         });
         mapConfig.enemyBase.forEach(info => {
             const id = this.entityId;
-            const building = new Building(p2Uid, id, info);
+            const building = new Building(p2UserId, id, info, this);
             this.entityMap.set(id, building);
             this.buildingMap.set(id, building)
         });
         mapConfig.mapBuilding.forEach(info => {
             const id = this.entityId;
-            const building = new Building(null, id, info);
+            const building = new Building(null, id, info, this);
             this.entityMap.set(id, building);
             this.buildingMap.set(id, building)
         });
@@ -59,12 +68,13 @@ export class Simulator {
     }
 
     update() {
+        this.tk++;
         this.entityMap.forEach(entity => {
             if (entity.isDestroy) {
                 this.entityMap.delete(entity.id);
                 return;
             }
-            entity.update(Simulator.frameInterval);
+            entity.update(this.frameInterval);
         });
 
         // 机器人逻辑
@@ -75,28 +85,28 @@ export class Simulator {
     }
 
     private checkGameOver() {
-        let uid1: string;
+        let userId1: string;
         for (const [key, entity] of this.entityMap) {
-            if (entity.uid == null) {
+            if (entity.userId == null) {
                 continue;
             }
 
-            if (!uid1) {
-                uid1 = entity.uid;
+            if (!userId1) {
+                userId1 = entity.userId;
                 continue;
             }
 
-            if (entity.uid != uid1) {
+            if (entity.userId != userId1) {
                 return
             }
         }
 
-        this.onGameOver(uid1);
+        this.onGameOver(userId1);
     }
 
-    private onGameOver(winUid: string) {
-        console.log('game over win uid:', winUid);
-        Notifier.send(NotifyID.EndBattle, winUid);
+    protected onGameOver(winUserId: string) {
+        console.log('game over win userId:', winUserId);
+        Notifier.send(NotifyID.EndBattle, winUserId);
     }
 
     endGame() {
@@ -106,21 +116,21 @@ export class Simulator {
         this.robot = null;
     }
 
-    getBuildingListByUid(uid: string) {
+    getBuildingListByUserId(userId: string) {
         const result: Building[] = [];
         this.buildingMap.forEach((building) => {
-            if (building.uid === uid) {
+            if (building.userId === userId) {
                 result.push(building);
             }
         });
         return result;
     }
 
-    /** 排除指定uid的基地列表 */
-    getBuildingListExcludeUid(uid: string) {
+    /** 排除指定userId的基地列表 */
+    getBuildingListExcludeUserId(userId: string) {
         const result: Building[] = [];
         this.buildingMap.forEach((building) => {
-            if (building.uid !== uid) {
+            if (building.userId !== userId) {
                 result.push(building);
             }
         });

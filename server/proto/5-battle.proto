@@ -1,0 +1,54 @@
+syntax = "proto3";
+package BattlePto;
+
+// 注册
+message C_BATTLE_REGIEST{
+	int32 cmd = 1[default = 5];
+	int32 scmd = 2[default = 1];
+	string battleToken = 3;
+	string userId = 4;
+}
+
+// 开始战斗超时
+message S_BATTLE_EXPIRE{
+	int32 cmd = 1[default = 5];
+	int32 scmd = 2[default = 2];
+}
+
+message S_BATTLE_ERROR{
+	int32 cmd = 1[default = 5];
+	int32 scmd = 2[default = 3];
+}
+
+message S_BATTLE_START{
+	int32 cmd = 1[default = 5];
+	int32 scmd = 2[default = 4];
+	int32 mapId = 3;
+	string userId1 = 4;
+	string userId2 = 5;
+	int32 seed = 6;
+	int32 frameRate = 7;
+}
+
+message S_BATTLE_LOGIC_FRAME{
+	int32 cmd = 1[default = 5];
+	int32 scmd = 2[default = 5];
+	repeated DispatchInfo dispatchInfos = 3;
+}
+
+message S_BATTLE_END{
+	int32 cmd = 1[default = 5];
+	int32 scmd = 2[default = 6];
+}
+
+message C_BATTLE_DISPATCH{
+	int32 cmd = 1[default = 5];
+	int32 scmd = 2[default = 7];
+	DispatchInfo dispatchInfo = 3;
+}
+
+message DispatchInfo{
+	int32 fromId = 1;
+	int32 targetId = 2;
+	int32 dispatchRate = 3;
+}

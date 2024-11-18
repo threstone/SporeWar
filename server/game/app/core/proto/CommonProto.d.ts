@@ -3478,3 +3478,779 @@ export namespace MatchPto {
         Rank = 1
     }
 }
+
+/** Namespace BattlePto. */
+export namespace BattlePto {
+
+    /** Properties of a C_BATTLE_REGIEST. */
+    interface IC_BATTLE_REGIEST {
+
+        /** C_BATTLE_REGIEST cmd */
+        cmd?: (number|null);
+
+        /** C_BATTLE_REGIEST scmd */
+        scmd?: (number|null);
+
+        /** C_BATTLE_REGIEST battleToken */
+        battleToken?: (string|null);
+
+        /** C_BATTLE_REGIEST userId */
+        userId?: (string|null);
+    }
+
+    /** Represents a C_BATTLE_REGIEST. */
+    class C_BATTLE_REGIEST implements IC_BATTLE_REGIEST {
+
+        /**
+         * Constructs a new C_BATTLE_REGIEST.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: BattlePto.IC_BATTLE_REGIEST);
+
+        /** C_BATTLE_REGIEST cmd. */
+        public cmd: number;
+
+        /** C_BATTLE_REGIEST scmd. */
+        public scmd: number;
+
+        /** C_BATTLE_REGIEST battleToken. */
+        public battleToken: string;
+
+        /** C_BATTLE_REGIEST userId. */
+        public userId: string;
+
+        /**
+         * Encodes the specified C_BATTLE_REGIEST message. Does not implicitly {@link BattlePto.C_BATTLE_REGIEST.verify|verify} messages.
+         * @param message C_BATTLE_REGIEST message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: BattlePto.IC_BATTLE_REGIEST, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified C_BATTLE_REGIEST message, length delimited. Does not implicitly {@link BattlePto.C_BATTLE_REGIEST.verify|verify} messages.
+         * @param message C_BATTLE_REGIEST message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: BattlePto.IC_BATTLE_REGIEST, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a C_BATTLE_REGIEST message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns C_BATTLE_REGIEST
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): BattlePto.C_BATTLE_REGIEST;
+
+        /**
+         * Decodes a C_BATTLE_REGIEST message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns C_BATTLE_REGIEST
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): BattlePto.C_BATTLE_REGIEST;
+
+        /**
+         * Verifies a C_BATTLE_REGIEST message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a C_BATTLE_REGIEST message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns C_BATTLE_REGIEST
+         */
+        public static fromObject(object: { [k: string]: any }): BattlePto.C_BATTLE_REGIEST;
+
+        /**
+         * Creates a plain object from a C_BATTLE_REGIEST message. Also converts values to other types if specified.
+         * @param message C_BATTLE_REGIEST
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: BattlePto.C_BATTLE_REGIEST, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this C_BATTLE_REGIEST to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a S_BATTLE_EXPIRE. */
+    interface IS_BATTLE_EXPIRE {
+
+        /** S_BATTLE_EXPIRE cmd */
+        cmd?: (number|null);
+
+        /** S_BATTLE_EXPIRE scmd */
+        scmd?: (number|null);
+    }
+
+    /** Represents a S_BATTLE_EXPIRE. */
+    class S_BATTLE_EXPIRE implements IS_BATTLE_EXPIRE {
+
+        /**
+         * Constructs a new S_BATTLE_EXPIRE.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: BattlePto.IS_BATTLE_EXPIRE);
+
+        /** S_BATTLE_EXPIRE cmd. */
+        public cmd: number;
+
+        /** S_BATTLE_EXPIRE scmd. */
+        public scmd: number;
+
+        /**
+         * Encodes the specified S_BATTLE_EXPIRE message. Does not implicitly {@link BattlePto.S_BATTLE_EXPIRE.verify|verify} messages.
+         * @param message S_BATTLE_EXPIRE message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: BattlePto.IS_BATTLE_EXPIRE, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified S_BATTLE_EXPIRE message, length delimited. Does not implicitly {@link BattlePto.S_BATTLE_EXPIRE.verify|verify} messages.
+         * @param message S_BATTLE_EXPIRE message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: BattlePto.IS_BATTLE_EXPIRE, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a S_BATTLE_EXPIRE message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns S_BATTLE_EXPIRE
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): BattlePto.S_BATTLE_EXPIRE;
+
+        /**
+         * Decodes a S_BATTLE_EXPIRE message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns S_BATTLE_EXPIRE
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): BattlePto.S_BATTLE_EXPIRE;
+
+        /**
+         * Verifies a S_BATTLE_EXPIRE message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a S_BATTLE_EXPIRE message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns S_BATTLE_EXPIRE
+         */
+        public static fromObject(object: { [k: string]: any }): BattlePto.S_BATTLE_EXPIRE;
+
+        /**
+         * Creates a plain object from a S_BATTLE_EXPIRE message. Also converts values to other types if specified.
+         * @param message S_BATTLE_EXPIRE
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: BattlePto.S_BATTLE_EXPIRE, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this S_BATTLE_EXPIRE to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a S_BATTLE_ERROR. */
+    interface IS_BATTLE_ERROR {
+
+        /** S_BATTLE_ERROR cmd */
+        cmd?: (number|null);
+
+        /** S_BATTLE_ERROR scmd */
+        scmd?: (number|null);
+    }
+
+    /** Represents a S_BATTLE_ERROR. */
+    class S_BATTLE_ERROR implements IS_BATTLE_ERROR {
+
+        /**
+         * Constructs a new S_BATTLE_ERROR.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: BattlePto.IS_BATTLE_ERROR);
+
+        /** S_BATTLE_ERROR cmd. */
+        public cmd: number;
+
+        /** S_BATTLE_ERROR scmd. */
+        public scmd: number;
+
+        /**
+         * Encodes the specified S_BATTLE_ERROR message. Does not implicitly {@link BattlePto.S_BATTLE_ERROR.verify|verify} messages.
+         * @param message S_BATTLE_ERROR message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: BattlePto.IS_BATTLE_ERROR, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified S_BATTLE_ERROR message, length delimited. Does not implicitly {@link BattlePto.S_BATTLE_ERROR.verify|verify} messages.
+         * @param message S_BATTLE_ERROR message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: BattlePto.IS_BATTLE_ERROR, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a S_BATTLE_ERROR message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns S_BATTLE_ERROR
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): BattlePto.S_BATTLE_ERROR;
+
+        /**
+         * Decodes a S_BATTLE_ERROR message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns S_BATTLE_ERROR
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): BattlePto.S_BATTLE_ERROR;
+
+        /**
+         * Verifies a S_BATTLE_ERROR message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a S_BATTLE_ERROR message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns S_BATTLE_ERROR
+         */
+        public static fromObject(object: { [k: string]: any }): BattlePto.S_BATTLE_ERROR;
+
+        /**
+         * Creates a plain object from a S_BATTLE_ERROR message. Also converts values to other types if specified.
+         * @param message S_BATTLE_ERROR
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: BattlePto.S_BATTLE_ERROR, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this S_BATTLE_ERROR to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a S_BATTLE_START. */
+    interface IS_BATTLE_START {
+
+        /** S_BATTLE_START cmd */
+        cmd?: (number|null);
+
+        /** S_BATTLE_START scmd */
+        scmd?: (number|null);
+
+        /** S_BATTLE_START mapId */
+        mapId?: (number|null);
+
+        /** S_BATTLE_START userId1 */
+        userId1?: (string|null);
+
+        /** S_BATTLE_START userId2 */
+        userId2?: (string|null);
+
+        /** S_BATTLE_START seed */
+        seed?: (number|null);
+
+        /** S_BATTLE_START frameRate */
+        frameRate?: (number|null);
+    }
+
+    /** Represents a S_BATTLE_START. */
+    class S_BATTLE_START implements IS_BATTLE_START {
+
+        /**
+         * Constructs a new S_BATTLE_START.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: BattlePto.IS_BATTLE_START);
+
+        /** S_BATTLE_START cmd. */
+        public cmd: number;
+
+        /** S_BATTLE_START scmd. */
+        public scmd: number;
+
+        /** S_BATTLE_START mapId. */
+        public mapId: number;
+
+        /** S_BATTLE_START userId1. */
+        public userId1: string;
+
+        /** S_BATTLE_START userId2. */
+        public userId2: string;
+
+        /** S_BATTLE_START seed. */
+        public seed: number;
+
+        /** S_BATTLE_START frameRate. */
+        public frameRate: number;
+
+        /**
+         * Encodes the specified S_BATTLE_START message. Does not implicitly {@link BattlePto.S_BATTLE_START.verify|verify} messages.
+         * @param message S_BATTLE_START message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: BattlePto.IS_BATTLE_START, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified S_BATTLE_START message, length delimited. Does not implicitly {@link BattlePto.S_BATTLE_START.verify|verify} messages.
+         * @param message S_BATTLE_START message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: BattlePto.IS_BATTLE_START, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a S_BATTLE_START message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns S_BATTLE_START
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): BattlePto.S_BATTLE_START;
+
+        /**
+         * Decodes a S_BATTLE_START message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns S_BATTLE_START
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): BattlePto.S_BATTLE_START;
+
+        /**
+         * Verifies a S_BATTLE_START message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a S_BATTLE_START message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns S_BATTLE_START
+         */
+        public static fromObject(object: { [k: string]: any }): BattlePto.S_BATTLE_START;
+
+        /**
+         * Creates a plain object from a S_BATTLE_START message. Also converts values to other types if specified.
+         * @param message S_BATTLE_START
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: BattlePto.S_BATTLE_START, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this S_BATTLE_START to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a S_BATTLE_LOGIC_FRAME. */
+    interface IS_BATTLE_LOGIC_FRAME {
+
+        /** S_BATTLE_LOGIC_FRAME cmd */
+        cmd?: (number|null);
+
+        /** S_BATTLE_LOGIC_FRAME scmd */
+        scmd?: (number|null);
+
+        /** S_BATTLE_LOGIC_FRAME dispatchInfos */
+        dispatchInfos?: (BattlePto.IDispatchInfo[]|null);
+    }
+
+    /** Represents a S_BATTLE_LOGIC_FRAME. */
+    class S_BATTLE_LOGIC_FRAME implements IS_BATTLE_LOGIC_FRAME {
+
+        /**
+         * Constructs a new S_BATTLE_LOGIC_FRAME.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: BattlePto.IS_BATTLE_LOGIC_FRAME);
+
+        /** S_BATTLE_LOGIC_FRAME cmd. */
+        public cmd: number;
+
+        /** S_BATTLE_LOGIC_FRAME scmd. */
+        public scmd: number;
+
+        /** S_BATTLE_LOGIC_FRAME dispatchInfos. */
+        public dispatchInfos: BattlePto.IDispatchInfo[];
+
+        /**
+         * Encodes the specified S_BATTLE_LOGIC_FRAME message. Does not implicitly {@link BattlePto.S_BATTLE_LOGIC_FRAME.verify|verify} messages.
+         * @param message S_BATTLE_LOGIC_FRAME message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: BattlePto.IS_BATTLE_LOGIC_FRAME, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified S_BATTLE_LOGIC_FRAME message, length delimited. Does not implicitly {@link BattlePto.S_BATTLE_LOGIC_FRAME.verify|verify} messages.
+         * @param message S_BATTLE_LOGIC_FRAME message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: BattlePto.IS_BATTLE_LOGIC_FRAME, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a S_BATTLE_LOGIC_FRAME message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns S_BATTLE_LOGIC_FRAME
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): BattlePto.S_BATTLE_LOGIC_FRAME;
+
+        /**
+         * Decodes a S_BATTLE_LOGIC_FRAME message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns S_BATTLE_LOGIC_FRAME
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): BattlePto.S_BATTLE_LOGIC_FRAME;
+
+        /**
+         * Verifies a S_BATTLE_LOGIC_FRAME message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a S_BATTLE_LOGIC_FRAME message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns S_BATTLE_LOGIC_FRAME
+         */
+        public static fromObject(object: { [k: string]: any }): BattlePto.S_BATTLE_LOGIC_FRAME;
+
+        /**
+         * Creates a plain object from a S_BATTLE_LOGIC_FRAME message. Also converts values to other types if specified.
+         * @param message S_BATTLE_LOGIC_FRAME
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: BattlePto.S_BATTLE_LOGIC_FRAME, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this S_BATTLE_LOGIC_FRAME to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a S_BATTLE_END. */
+    interface IS_BATTLE_END {
+
+        /** S_BATTLE_END cmd */
+        cmd?: (number|null);
+
+        /** S_BATTLE_END scmd */
+        scmd?: (number|null);
+    }
+
+    /** Represents a S_BATTLE_END. */
+    class S_BATTLE_END implements IS_BATTLE_END {
+
+        /**
+         * Constructs a new S_BATTLE_END.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: BattlePto.IS_BATTLE_END);
+
+        /** S_BATTLE_END cmd. */
+        public cmd: number;
+
+        /** S_BATTLE_END scmd. */
+        public scmd: number;
+
+        /**
+         * Encodes the specified S_BATTLE_END message. Does not implicitly {@link BattlePto.S_BATTLE_END.verify|verify} messages.
+         * @param message S_BATTLE_END message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: BattlePto.IS_BATTLE_END, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified S_BATTLE_END message, length delimited. Does not implicitly {@link BattlePto.S_BATTLE_END.verify|verify} messages.
+         * @param message S_BATTLE_END message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: BattlePto.IS_BATTLE_END, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a S_BATTLE_END message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns S_BATTLE_END
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): BattlePto.S_BATTLE_END;
+
+        /**
+         * Decodes a S_BATTLE_END message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns S_BATTLE_END
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): BattlePto.S_BATTLE_END;
+
+        /**
+         * Verifies a S_BATTLE_END message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a S_BATTLE_END message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns S_BATTLE_END
+         */
+        public static fromObject(object: { [k: string]: any }): BattlePto.S_BATTLE_END;
+
+        /**
+         * Creates a plain object from a S_BATTLE_END message. Also converts values to other types if specified.
+         * @param message S_BATTLE_END
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: BattlePto.S_BATTLE_END, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this S_BATTLE_END to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a C_BATTLE_DISPATCH. */
+    interface IC_BATTLE_DISPATCH {
+
+        /** C_BATTLE_DISPATCH cmd */
+        cmd?: (number|null);
+
+        /** C_BATTLE_DISPATCH scmd */
+        scmd?: (number|null);
+
+        /** C_BATTLE_DISPATCH dispatchInfo */
+        dispatchInfo?: (BattlePto.IDispatchInfo|null);
+    }
+
+    /** Represents a C_BATTLE_DISPATCH. */
+    class C_BATTLE_DISPATCH implements IC_BATTLE_DISPATCH {
+
+        /**
+         * Constructs a new C_BATTLE_DISPATCH.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: BattlePto.IC_BATTLE_DISPATCH);
+
+        /** C_BATTLE_DISPATCH cmd. */
+        public cmd: number;
+
+        /** C_BATTLE_DISPATCH scmd. */
+        public scmd: number;
+
+        /** C_BATTLE_DISPATCH dispatchInfo. */
+        public dispatchInfo?: (BattlePto.IDispatchInfo|null);
+
+        /**
+         * Encodes the specified C_BATTLE_DISPATCH message. Does not implicitly {@link BattlePto.C_BATTLE_DISPATCH.verify|verify} messages.
+         * @param message C_BATTLE_DISPATCH message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: BattlePto.IC_BATTLE_DISPATCH, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified C_BATTLE_DISPATCH message, length delimited. Does not implicitly {@link BattlePto.C_BATTLE_DISPATCH.verify|verify} messages.
+         * @param message C_BATTLE_DISPATCH message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: BattlePto.IC_BATTLE_DISPATCH, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a C_BATTLE_DISPATCH message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns C_BATTLE_DISPATCH
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): BattlePto.C_BATTLE_DISPATCH;
+
+        /**
+         * Decodes a C_BATTLE_DISPATCH message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns C_BATTLE_DISPATCH
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): BattlePto.C_BATTLE_DISPATCH;
+
+        /**
+         * Verifies a C_BATTLE_DISPATCH message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a C_BATTLE_DISPATCH message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns C_BATTLE_DISPATCH
+         */
+        public static fromObject(object: { [k: string]: any }): BattlePto.C_BATTLE_DISPATCH;
+
+        /**
+         * Creates a plain object from a C_BATTLE_DISPATCH message. Also converts values to other types if specified.
+         * @param message C_BATTLE_DISPATCH
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: BattlePto.C_BATTLE_DISPATCH, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this C_BATTLE_DISPATCH to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a DispatchInfo. */
+    interface IDispatchInfo {
+
+        /** DispatchInfo fromId */
+        fromId?: (number|null);
+
+        /** DispatchInfo targetId */
+        targetId?: (number|null);
+
+        /** DispatchInfo dispatchRate */
+        dispatchRate?: (number|null);
+    }
+
+    /** Represents a DispatchInfo. */
+    class DispatchInfo implements IDispatchInfo {
+
+        /**
+         * Constructs a new DispatchInfo.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: BattlePto.IDispatchInfo);
+
+        /** DispatchInfo fromId. */
+        public fromId: number;
+
+        /** DispatchInfo targetId. */
+        public targetId: number;
+
+        /** DispatchInfo dispatchRate. */
+        public dispatchRate: number;
+
+        /**
+         * Encodes the specified DispatchInfo message. Does not implicitly {@link BattlePto.DispatchInfo.verify|verify} messages.
+         * @param message DispatchInfo message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: BattlePto.IDispatchInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified DispatchInfo message, length delimited. Does not implicitly {@link BattlePto.DispatchInfo.verify|verify} messages.
+         * @param message DispatchInfo message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: BattlePto.IDispatchInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a DispatchInfo message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns DispatchInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): BattlePto.DispatchInfo;
+
+        /**
+         * Decodes a DispatchInfo message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns DispatchInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): BattlePto.DispatchInfo;
+
+        /**
+         * Verifies a DispatchInfo message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a DispatchInfo message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns DispatchInfo
+         */
+        public static fromObject(object: { [k: string]: any }): BattlePto.DispatchInfo;
+
+        /**
+         * Creates a plain object from a DispatchInfo message. Also converts values to other types if specified.
+         * @param message DispatchInfo
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: BattlePto.DispatchInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this DispatchInfo to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+}

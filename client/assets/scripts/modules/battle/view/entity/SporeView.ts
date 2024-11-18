@@ -1,5 +1,5 @@
 import { UserVo } from "../../../vo/UserVo";
-import { Spore } from "../../model/entity/Spore";
+import { Spore } from "../../model/simulator/entity/Spore";
 
 const { ccclass, property } = cc._decorator;
 
@@ -10,7 +10,7 @@ export default class SporeView extends cc.Component {
     sporeSprite: cc.Sprite = null;
 
     init(sporeInfo: Spore) {
-        const imgPath = sporeInfo.uid === UserVo.ins().uid ? sporeInfo.cfg.selfImg : sporeInfo.cfg.enemyImg;
+        const imgPath = sporeInfo.userId === UserVo.ins().userId ? sporeInfo.cfg.selfImg : sporeInfo.cfg.enemyImg;
         cc.resources.load(imgPath, cc.SpriteFrame, (err, spriteFrame) => {
             this.sporeSprite.spriteFrame = spriteFrame;
         });

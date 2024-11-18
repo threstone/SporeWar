@@ -1,5 +1,6 @@
 export interface MatchUser {
-    uuid: string
+    userId: string
+    serverId:number
     logicNode: string
     rank?: number
     startTime: number

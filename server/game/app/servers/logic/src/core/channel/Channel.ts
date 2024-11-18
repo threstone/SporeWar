@@ -1,6 +1,6 @@
 import { GlobalVar } from '../../GlobalVar';
 import { Player } from '../player/Player';
-import { ProtoBufEncoder } from '../ProtoBufEncoder';
+import { ProtoBufEncoder } from '../../../../../core/proto/ProtoBufEncoder';
 
 export class Channel {
     channelName: string;

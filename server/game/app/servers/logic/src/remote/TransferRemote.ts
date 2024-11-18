@@ -1,7 +1,7 @@
 import { RpcRouteType } from 'stone-framework';
-import { ProtoBufEncoder } from '../core/ProtoBufEncoder';
+import { ProtoBufEncoder } from '../../../../core/proto/ProtoBufEncoder';
 import { GlobalVar } from '../GlobalVar';
-import { ServerPto } from '../CommonProto';
+import { ServerPto } from '../../../../core/proto/CommonProto';
 import { ErrorUtils } from '../core/ErrorUtils';
 import { Session } from '../core/session/session';
 

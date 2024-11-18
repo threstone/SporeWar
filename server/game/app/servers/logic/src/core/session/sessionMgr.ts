@@ -1,4 +1,4 @@
-import { ServerPto } from '../../CommonProto';
+import { ServerPto } from '../../../../../core/proto/CommonProto';
 import { GlobalVar } from '../../GlobalVar';
 import { Session } from './session';
 

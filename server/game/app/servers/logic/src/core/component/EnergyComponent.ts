@@ -1,5 +1,5 @@
 import { EnergyModel } from '../../../../../core/sequelize/model/game/EnergyModel';
-import { ItemPto } from '../../CommonProto';
+import { ItemPto } from '../../../../../core/proto/CommonProto';
 import { Player } from '../player/Player';
 import { BaseComponent } from './BaseComponent';
 import { Energy } from './entity/Energy';

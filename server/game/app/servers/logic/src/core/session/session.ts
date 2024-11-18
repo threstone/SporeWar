@@ -1,7 +1,7 @@
 import { RpcRouteType } from 'stone-framework';
-import { ProtoBufEncoder } from '../ProtoBufEncoder';
+import { ProtoBufEncoder } from '../../../../../core/proto/ProtoBufEncoder';
 import { GlobalVar } from '../../GlobalVar';
-import { SystemPto } from '../../CommonProto';
+import { SystemPto } from '../../../../../core/proto/CommonProto';
 import { Player } from '../player/Player';
 import { EventEnum } from '../../../../../Enum';
 

@@ -27,7 +27,7 @@ export class LoginModel extends BaseModel {
         ViewMgr.ins().openView('/prefab/hall/HallView');
 
         const vo = UserVo.ins();
-        vo.uid = message.loginInfo.userId;
+        vo.userId = message.loginInfo.userId;
         vo.serverId = message.loginInfo.serverId;
         vo.stageId = message.loginInfo.stageId;
     }

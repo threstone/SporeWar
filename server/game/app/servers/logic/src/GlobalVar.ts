@@ -1,7 +1,7 @@
 import * as path from 'path';
 import * as fs from 'fs';
-import * as allProto from './CommonProto';
-import { ProtoBufEncoder } from './core/ProtoBufEncoder';
+import * as allProto from '../../../core/proto/CommonProto';
+import { ProtoBufEncoder } from '../../../core/proto/ProtoBufEncoder';
 
 import { SessionMgr } from './core/session/sessionMgr';
 import { ServerMgr } from './core/server/ServerMgr';

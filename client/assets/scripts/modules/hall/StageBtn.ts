@@ -3,6 +3,7 @@ import { Notifier } from "../../framework/notify/Notifier";
 import { NotifyID } from "../../framework/notify/NotifyID";
 import { BattleModel } from "../battle/model/BattleModel";
 import { Robot } from "../battle/model/robot/Robot";
+import { SimulatorTypeEnum } from "../battle/model/simulator/Simulator";
 import { UserVo } from "../vo/UserVo";
 
 const { ccclass, property } = cc._decorator;
@@ -28,6 +29,6 @@ export default class StageBtn extends cc.Component {
         if (simulator) {
             return;
         }
-        Notifier.send(NotifyID.StartBattle, this._cfg.mapId, UserVo.ins().uid, Robot.uid);
+        Notifier.send(NotifyID.StartBattle, SimulatorTypeEnum.Local, this._cfg.mapId, UserVo.ins().userId, Robot.userId, 60);
     }
 }

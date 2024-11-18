@@ -31,8 +31,16 @@ declare class Match {
 }
 
 declare class Battle_BattleRemote {
-    static callCreateTable(routeOption: RpcRouterOptions, matchType: MatchTypeEnum, uuid1: string, logicNode1: string, uuid2: string, logicNode2: string): Promise<void>;
-    static sendCreateTable(routeOption: RpcRouterOptions, matchType: MatchTypeEnum, uuid1: string, logicNode1: string, uuid2: string, logicNode2: string): void;
+    static callCreateTable(routeOption: RpcRouterOptions, 
+        matchType: MatchTypeEnum,
+        userId1: string, logicNode1: string, serverId1: number,
+        userId2: string, logicNode2: string, serverId2: number,
+    ): Promise<void>;
+    static sendCreateTable(routeOption: RpcRouterOptions, 
+        matchType: MatchTypeEnum,
+        userId1: string, logicNode1: string, serverId1: number,
+        userId2: string, logicNode2: string, serverId2: number,
+    ): void;
 }
 
 declare class Gate_GateRemote {
@@ -48,8 +56,8 @@ declare class Logic_ChannelRemote {
 }
 
 declare class Logic_MatchRemote {
-    static callMatchSuccess(routeOption: RpcRouterOptions, battleToken: string, address: string, uuid: string, expireTime: number): Promise<void>;
-    static sendMatchSuccess(routeOption: RpcRouterOptions, battleToken: string, address: string, uuid: string, expireTime: number): void;
+    static callMatchSuccess(routeOption: RpcRouterOptions, battleToken: string, address: string, userId: string, serverId: number, expireTime: number): Promise<void>;
+    static sendMatchSuccess(routeOption: RpcRouterOptions, battleToken: string, address: string, userId: string, serverId: number, expireTime: number): void;
 }
 
 declare class Logic_PlayerRemote {
@@ -63,8 +71,8 @@ declare class Logic_TransferRemote {
 }
 
 declare class Match_MatchReomte {
-    static callStartMatch(routeOption: RpcRouterOptions, matchType: MatchTypeEnum, logicNode: string, uuid: string, rank?: number): Promise<boolean>;
-    static sendStartMatch(routeOption: RpcRouterOptions, matchType: MatchTypeEnum, logicNode: string, uuid: string, rank?: number): void;
-    static callStopMatch(routeOption: RpcRouterOptions, matchType: MatchTypeEnum, uuid: string): Promise<boolean>;
-    static sendStopMatch(routeOption: RpcRouterOptions, matchType: MatchTypeEnum, uuid: string): void;
+    static callStartMatch(routeOption: RpcRouterOptions, matchType: MatchTypeEnum, logicNode: string, userId: string, serverId: number, rank?: number): Promise<boolean>;
+    static sendStartMatch(routeOption: RpcRouterOptions, matchType: MatchTypeEnum, logicNode: string, userId: string, serverId: number, rank?: number): void;
+    static callStopMatch(routeOption: RpcRouterOptions, matchType: MatchTypeEnum, userId: string): Promise<boolean>;
+    static sendStopMatch(routeOption: RpcRouterOptions, matchType: MatchTypeEnum, userId: string): void;
 }

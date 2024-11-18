@@ -5,7 +5,7 @@ import { Player } from '../core/player/Player';
 import { Session } from '../core/session/session';
 import { PlayerModel } from '../../../../core/sequelize/model/game/PlayerModel';
 import { GlobalVar } from '../GlobalVar';
-import { TestPto } from '../CommonProto';
+import { TestPto } from '../../../../core/proto/CommonProto';
 
 export class TestHandler {
     private static FAKETIME: string;

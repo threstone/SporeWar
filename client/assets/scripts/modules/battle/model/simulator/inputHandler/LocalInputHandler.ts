@@ -1,4 +1,4 @@
-import { Building } from "../../entity/Building";
+import { Building } from "../entity/Building";
 import { InputHandler } from "./InputHandler";
 
 export class LocalInputHandler extends InputHandler {

@@ -1,8 +1,8 @@
 import { ServerModel } from '../../../../../core/sequelize/model/platform/ServerModel';
 import { EventEnum } from '../../../../../Enum';
-import { SystemPto } from '../../CommonProto';
+import { SystemPto } from '../../../../../core/proto/CommonProto';
 import { GlobalVar } from '../../GlobalVar';
-import { ProtoBufEncoder } from '../ProtoBufEncoder';
+import { ProtoBufEncoder } from '../../../../../core/proto/ProtoBufEncoder';
 import { TimeMgr } from '../TimeMgr';
 import { Server } from './Server';
 

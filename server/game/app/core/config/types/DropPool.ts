@@ -1,5 +1,5 @@
 /* eslint-disable no-use-before-define */
-import { ItemPto } from '../../../servers/logic/src/CommonProto';
+import { ItemPto } from '../../proto/CommonProto';
 import { Player } from '../../../servers/logic/src/core/player/Player';
 import { Cfg } from '../Cfg';
 import { TConfig } from '../TConfig';

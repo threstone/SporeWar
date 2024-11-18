@@ -1,7 +1,7 @@
 import { ServerModel } from '../../../../core/sequelize/model/platform/ServerModel';
-import { ServerPto } from '../CommonProto';
+import { ServerPto } from '../../../../core/proto/CommonProto';
 import { Player } from '../core/player/Player';
-import { ProtoBufEncoder } from '../core/ProtoBufEncoder';
+import { ProtoBufEncoder } from '../../../../core/proto/ProtoBufEncoder';
 import { Session } from '../core/session/session';
 import { GlobalVar } from '../GlobalVar';
 

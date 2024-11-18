@@ -4,7 +4,7 @@ import { PlayerModel } from '../../../../../core/sequelize/model/game/PlayerMode
 import { GlobalVar } from '../../GlobalVar';
 import { BaseComponent } from '../component/BaseComponent';
 import { Session } from '../session/session';
-import { ItemPto } from '../../CommonProto';
+import { ItemPto } from '../../../../../core/proto/CommonProto';
 import { ItemComponent } from '../component/ItemComponent';
 import { Server } from '../server/Server';
 
@@ -136,7 +136,7 @@ export class Player extends EventEmitter {
         return this.playerInfo.save({ fields, validate: false });
     }
 
-    getLoginInfo(): import('../../CommonProto').PlayerPto.ILoginInfo {
+    getLoginInfo(): import('../../../../../core/proto/CommonProto').PlayerPto.ILoginInfo {
         return {
             code: 0,
             serverId: this.serverId,

@@ -15,21 +15,21 @@ export abstract class BaseMatch {
         this._matchType = matchType;
     }
 
-    startMatch(logicNode: string, uuid: string, rank?: number): boolean {
-        if (!this._userSet.has(uuid)) {
-            this._userSet.add(uuid);
+    startMatch(logicNode: string, userId: string, serverId: number, rank?: number): boolean {
+        if (!this._userSet.has(userId)) {
+            this._userSet.add(userId);
             this._users.push({
-                uuid, logicNode, rank, startTime: Date.now(),
+                userId, serverId, logicNode, rank, startTime: Date.now(),
             });
         }
         return true;
     }
 
-    stopMatch(uuid: string): boolean {
-        if (this._userSet.has(uuid)) {
-            this._userSet.delete(uuid);
+    stopMatch(userId: string): boolean {
+        if (this._userSet.has(userId)) {
+            this._userSet.delete(userId);
             for (let index = 0; index < this._users.length; index++) {
-                if (this._users[index].uuid === uuid) {
+                if (this._users[index].userId === userId) {
                     this._users.splice(index, 1);
                     break;
                 }
@@ -43,10 +43,12 @@ export abstract class BaseMatch {
         rpc.battle.battleRemote.sendCreateTable(
             { type: RpcRouteType.Random },
             this._matchType,
-            user1.uuid,
+            user1.userId,
             user1.logicNode,
-            user2.uuid,
+            user1.serverId,
+            user2.userId,
             user2.logicNode,
+            user2.serverId,
         );
     }
 }

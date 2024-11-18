@@ -50,7 +50,7 @@ export class RankMatch extends BaseMatch {
             const element = this._users[index];
             if (delUserSet.has(index)) {
                 newUsers.push(element);
-                this._userSet.add(element.uuid);
+                this._userSet.add(element.userId);
             }
         }
         this._users = newUsers;

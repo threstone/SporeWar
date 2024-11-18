@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 import { ItemModel } from '../../../../../core/sequelize/model/game/ItemModel';
-import { ItemPto } from '../../CommonProto';
+import { ItemPto } from '../../../../../core/proto/CommonProto';
 import { Player } from '../player/Player';
 import { BaseComponent } from './BaseComponent';
 import { DictionaryComponent } from './DictionaryComponent';

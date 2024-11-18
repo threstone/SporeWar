@@ -1,4 +1,4 @@
-import { SystemPto } from '../CommonProto';
+import { SystemPto } from '../../../../core/proto/CommonProto';
 import { Session } from '../core/session/session';
 
 export class SystemHandler {

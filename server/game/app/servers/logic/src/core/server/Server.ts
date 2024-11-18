@@ -1,10 +1,10 @@
 import { PlayerModel } from '../../../../../core/sequelize/model/game/PlayerModel';
 import { RoleModel } from '../../../../../core/sequelize/model/platform/RoleModel';
 import { UserModel } from '../../../../../core/sequelize/model/platform/UserModel';
-import { ServerPto, SystemPto } from '../../CommonProto';
+import { ServerPto, SystemPto } from '../../../../../core/proto/CommonProto';
 import { GlobalVar } from '../../GlobalVar';
 import { Session } from '../session/session';
-import { ProtoBufEncoder } from '../ProtoBufEncoder';
+import { ProtoBufEncoder } from '../../../../../core/proto/ProtoBufEncoder';
 import { Player } from '../player/Player';
 import { BlockModel } from '../../../../../core/sequelize/model/platform/BlockModel';
 import { TimeMgr } from '../TimeMgr';

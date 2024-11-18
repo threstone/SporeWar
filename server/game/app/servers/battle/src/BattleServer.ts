@@ -21,5 +21,6 @@ export class BattleServer extends WebSocketServer<BattleSession> {
 
     onClientSocketClose(session: BattleSession): void {
         logger.debug(session);
+        session.onClose();
     }
 }

@@ -1,4 +1,4 @@
-import { ItemPto } from '../../../servers/logic/src/CommonProto';
+import { ItemPto } from '../../proto/CommonProto';
 import { TConfig } from '../TConfig';
 
 export class Items extends TConfig<ItemsDefine> {

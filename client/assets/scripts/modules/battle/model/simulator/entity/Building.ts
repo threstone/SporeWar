@@ -1,8 +1,9 @@
-import { BuildingCfg } from "../../../../config/BuildingCfg";
-import { Cfg } from "../../../../config/Cfg";
+import { BuildingCfg } from "../../../../../config/BuildingCfg";
+import { Cfg } from "../../../../../config/Cfg";
 import { Spore } from "./Spore";
 import { Entity } from "./Entity";
-import { DispatchTask } from "../DispatchTask";
+import { DispatchTask } from "../../DispatchTask";
+import { Simulator } from "../Simulator";
 
 export class Building extends Entity {
 
@@ -19,8 +20,8 @@ export class Building extends Entity {
 
     dispatchTasks: DispatchTask[] = [];
 
-    constructor(uid: string, id: number, data: number[]) {
-        super(uid, id, data[0], data[1]);
+    constructor(userId: string, id: number, data: number[], simulator: Simulator) {
+        super(userId, id, data[0], data[1], simulator);
         const buildingId = data[2];
         this.buildingConfig = Cfg.Building.get(buildingId);
 
@@ -57,14 +58,14 @@ export class Building extends Entity {
     }
 
     onSporeEnter(spore: Spore) {
-        if (spore.uid === this.uid) {
+        if (spore.userId === this.userId) {
             this.sporeCount += 1;
             return;
         }
 
         this.sporeCount -= 1;
         if (this.sporeCount < 0) {
-            this.uid = spore.uid;
+            this.userId = spore.userId;
             this.sporeCount = 0;
             this.createDt = 0;
         }
@@ -74,6 +75,7 @@ export class Building extends Entity {
         if (this.sporeCount === 0) {
             return;
         }
+        dispatchRate /= 10000;
         const task = this.getTaskByTarget(targetBuilding);
         if (!task) {
             const count = Math.floor(this.sporeCount * dispatchRate);

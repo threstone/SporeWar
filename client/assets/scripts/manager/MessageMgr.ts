@@ -7,7 +7,7 @@ declare namespace protobuf {
 		buf: Buffer;
 		pos: number;
 		len: number;
-		static create(buffer:Buffer): Reader;
+		static create(buffer: Buffer): Reader;
 	}
 }
 export class MessageMgr {
@@ -16,9 +16,13 @@ export class MessageMgr {
 	private static _protoBufReader: protobuf.Reader = protobuf.Reader.create(Buffer.alloc(1))
 	private static _protoBufClass: Map<number, any> = new Map<number, any>()
 	private static _indexOfProtoName: { [key: string]: number } = {};
-	private static _messagehandles: Map<number, Function> = new Map<number, Function>()
+	private static _messagehandles: Map<number, Function> = new Map<number, Function>();
+
+	private static _isInit: boolean = false;
+	private static _unRegisterHandlers: Map<string, any> = new Map<string, any>()
 
 	public static init(allProto: any) {
+		this._isInit = true;
 		this.addFunToProtobuf();
 		for (const protoKey in allProto) {
 			const protoModule = allProto[protoKey];
@@ -30,14 +34,23 @@ export class MessageMgr {
 						throw new Error("协议头cmd , scmd 值错误," + protoKey)
 					}
 
-					let protoIndex = MessageMgr.getComposeCmdId(protoClass.prototype.cmd, protoClass.prototype.scmd);
-					MessageMgr._protoBufClass.set(protoIndex, protoClass);
+					let protoIndex = this.getComposeCmdId(protoClass.prototype.cmd, protoClass.prototype.scmd);
+					this._protoBufClass.set(protoIndex, protoClass);
 					if (key.startsWith("S_")) {
-						MessageMgr._indexOfProtoName[key] = protoIndex;
+						const handler = this._unRegisterHandlers.get(key);
+						if (handler) {
+							cc.log('注册协议处理函数:', key);
+							this._messagehandles.set(protoIndex, handler);
+						} else {
+							this._indexOfProtoName[key] = protoIndex;
+						}
 					}
 				}
 			}
 		}
+
+		this._unRegisterHandlers.clear();
+		this._unRegisterHandlers = null;
 	}
 
 	private static addFunToProtobuf() {
@@ -71,21 +84,30 @@ export class MessageMgr {
 	}
 
 	public static addHandlerByName(protoName: string, handler: Function) {
-		const index = MessageMgr._indexOfProtoName[protoName];
+		if (this._isInit === false) {
+			if (this._unRegisterHandlers.has(protoName)) {
+				cc.error('重复注册协议处理函数:', protoName);
+				return;
+			}
+			this._unRegisterHandlers.set(protoName, handler);
+			return;
+		}
+
+		const index = this._indexOfProtoName[protoName];
 		if (index == null) {
 			cc.error('不存在的协议', protoName);
 			return;
 		}
-		if (MessageMgr._messagehandles.has(index)) {
+		if (this._messagehandles.has(index)) {
 			cc.error('重复注册协议处理函数:', protoName);
 			return;
 		}
 		cc.log('注册协议处理函数:', protoName);
-		MessageMgr._messagehandles.set(index, handler);
+		this._messagehandles.set(index, handler);
 	}
 
 	public static getHandler(protoIndex: number) {
-		return MessageMgr._messagehandles.get(protoIndex);
+		return this._messagehandles.get(protoIndex);
 	}
 
 	public static encode(message: IGameMessage): Buffer {
@@ -93,13 +115,13 @@ export class MessageMgr {
 			return
 		}
 
-		let index = MessageMgr.getComposeCmdId(message.cmd, message.scmd);
-		let messageClass = MessageMgr._protoBufClass.get(index)
+		let index = this.getComposeCmdId(message.cmd, message.scmd);
+		let messageClass = this._protoBufClass.get(index)
 		if (!messageClass) {
 			throw new Error("未找到注册的协议编码类:" + index)
 		}
-		MessageMgr._protoBufWriter.reset();
-		const writer = messageClass.encode(message, MessageMgr._protoBufWriter)
+		this._protoBufWriter.reset();
+		const writer = messageClass.encode(message, this._protoBufWriter)
 		return writer.finishWithSysCmd(message.cmd, message.scmd)
 	}
 
@@ -115,20 +137,20 @@ export class MessageMgr {
 			buffer = Buffer.from(buffer);
 		}
 
-		const messageIndex = MessageMgr.getComposeCmdId(cmd, scmd);
-		const messageClass = MessageMgr._protoBufClass.get(messageIndex)
+		const messageIndex = this.getComposeCmdId(cmd, scmd);
+		const messageClass = this._protoBufClass.get(messageIndex)
 
 		if (!messageClass) {
 			cc.error("无法获取协议:", cmd, scmd)
 			return null;
 		}
 
-		MessageMgr._protoBufReader.buf = buffer
-		MessageMgr._protoBufReader.pos = offset + 8;
-		MessageMgr._protoBufReader.len = buffer.length
+		this._protoBufReader.buf = buffer
+		this._protoBufReader.pos = offset + 8;
+		this._protoBufReader.len = buffer.length
 		let result = null
 		try {
-			result = messageClass.decode(MessageMgr._protoBufReader);
+			result = messageClass.decode(this._protoBufReader);
 		} catch (e) {
 			cc.error("解码消息失败 ：", messageClass.name)
 		}
@@ -148,24 +170,23 @@ export class MessageMgr {
 			buffer = Buffer.from(buffer);
 		}
 
-		const messageIndex = MessageMgr.getComposeCmdId(cmd, scmd);
-		const messageClass = MessageMgr._protoBufClass.get(messageIndex)
+		const messageIndex = this.getComposeCmdId(cmd, scmd);
+		const messageClass = this._protoBufClass.get(messageIndex)
 
 		if (!messageClass) {
 			cc.error("无法获取协议:", cmd, scmd)
 			return null;
 		}
 
-		MessageMgr._protoBufReader.buf = buffer
-		MessageMgr._protoBufReader.pos = offset + 8;
-		MessageMgr._protoBufReader.len = buffer.length
+		this._protoBufReader.buf = buffer
+		this._protoBufReader.pos = offset + 8;
+		this._protoBufReader.len = buffer.length
 		let result = null
 		try {
-			result = messageClass.decode(MessageMgr._protoBufReader);
+			result = messageClass.decode(this._protoBufReader);
 			if (result) {
-				let handler = MessageMgr._messagehandles.get(messageIndex);
+				let handler = this._messagehandles.get(messageIndex);
 				if (handler) {
-					cc.log(`${messageClass.name}`, result);
 					handler(result);
 				} else {
 					cc.error(`没有处理函数:${messageClass.name}`)

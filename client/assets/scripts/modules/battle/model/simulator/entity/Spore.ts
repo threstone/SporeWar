@@ -1,5 +1,4 @@
-import { SporeCfg } from "../../../../config/SporeCfg";
-import { BattleModel } from "../BattleModel";
+import { SporeCfg } from "../../../../../config/SporeCfg";
 import { Building } from "./Building";
 import { Entity } from "./Entity";
 
@@ -14,7 +13,7 @@ export class Spore extends Entity {
     private _offsetPosition: cc.Vec2;
 
     constructor(from: Building, target: Building, indexOfColumn: number, columnCount: number, cfg: SporeCfg) {
-        super(from.uid, BattleModel.ins().simulator.entityId, from.position.x, from.position.y);
+        super(from.userId, from.simulator.entityId, from.position.x, from.position.y, from.simulator);
         this.cfg = cfg;
         this.from = from;
         this.targetBuilding = target;

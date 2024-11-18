@@ -1,4 +1,5 @@
 import * as WS from 'ws';
+import { ProtoBufEncoder } from '../proto/ProtoBufEncoder';
 
 export abstract class WebSocketSession {
     socket: WS;
@@ -27,6 +28,18 @@ export abstract class WebSocketSession {
         }
 
         this.onClientMessage(message);
+    }
+
+    close() {
+        this.socket.close();
+    }
+
+    sendMessage(msg: IGameMessage) {
+        this.socket.send(ProtoBufEncoder.encode(msg));
+    }
+
+    sendBuffer(buffer: Buffer) {
+        this.socket.send(buffer);
     }
 
     // eslint-disable-next-line no-unused-vars

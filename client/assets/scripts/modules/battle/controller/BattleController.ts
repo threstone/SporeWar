@@ -6,7 +6,7 @@ import { BattleModel } from "../model/BattleModel";
 import { SimulatorTypeEnum } from "../model/simulator/Simulator";
 import BattleView from "../view/BattleView";
 
-export class BattleController extends SingleClass{
+export class BattleController extends SingleClass {
 
     private _model = BattleModel.ins();
     private _view: BattleView;
@@ -19,9 +19,9 @@ export class BattleController extends SingleClass{
         Notifier.addListener(NotifyID.EndBattle, this.endBattle, this);
     }
 
-    private async startBattle(mapId: number, p1Uid: string, p2Uid: string) {
+    private async startBattle(type: SimulatorTypeEnum, mapId: number, p1UserId: string, p2UserId: string, frameRate: number) {
         const battleView = await ViewMgr.ins().openView('/prefab/battle/BattleView');
-        if (this._model.startBattle(SimulatorTypeEnum.Local, mapId, p1Uid, p2Uid) === false) {
+        if (this._model.startBattle(type, mapId, p1UserId, p2UserId, frameRate) === false) {
             ViewMgr.ins().closeView('/prefab/battle/BattleView');
         }
 
@@ -31,10 +31,10 @@ export class BattleController extends SingleClass{
         this._view.startBattle();
     }
 
-    private endBattle(winUid: number) {
+    private endBattle(winUserId: number) {
         this._model.endGame();
         this.view.endBattle();
-        if (!winUid) {
+        if (!winUserId) {
             ViewMgr.ins().closeView('/prefab/battle/BattleView');
         }
     }

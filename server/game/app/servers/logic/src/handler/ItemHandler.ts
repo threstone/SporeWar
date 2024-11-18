@@ -1,4 +1,4 @@
-import { ItemPto } from '../CommonProto';
+import { ItemPto } from '../../../../core/proto/CommonProto';
 import { EnergyComponent } from '../core/component/EnergyComponent';
 import { ItemComponent } from '../core/component/ItemComponent';
 import { Player } from '../core/player/Player';

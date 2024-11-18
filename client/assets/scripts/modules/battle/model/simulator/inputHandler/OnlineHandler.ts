@@ -1,10 +1,15 @@
-import { Building } from "../../entity/Building";
+import { BattlePto } from "../../../../../framework/proto/CommonProto";
+import { BattleModel } from "../../BattleModel";
 import { InputHandler } from "./InputHandler";
 
 export class OnlineHandler extends InputHandler {
     dispatchSpore(fromId: number, targetId: number, dispatchRate: number) {
-        const fromBuilding = this.simulator.entityMap.get(fromId) as Building;
-        const targetBuilding = this.simulator.entityMap.get(targetId) as Building;
-        fromBuilding.dispatchSpore(dispatchRate, targetBuilding);
+        BattleModel.ins().sendDispatch(new BattlePto.C_BATTLE_DISPATCH({
+            dispatchInfo: {
+                fromId,
+                targetId,
+                dispatchRate,
+            }
+        }));
     }
 }

@@ -95,7 +95,6 @@ export class ProtoBufEncoder {
 					if (key.startsWith('S_')) {
 						continue;
 					}
-					let isFind = false;
 					const handlerKeys = Object.keys(handlerObj);
 					for (let z = 0; z < handlerKeys.length; z++) {
 						const handleName = handlerKeys[z];
@@ -103,13 +102,8 @@ export class ProtoBufEncoder {
 						if (handler[key]) {
 							ProtoBufEncoder.setHandler(temp.prototype.cmd, temp.prototype.scmd, handler[key].bind(handler));
 							logger.debug(`注册函数 ${key}`);
-							isFind = true;
 							break;
 						}
-					}
-					// eslint-disable-next-line eqeqeq
-					if (!isFind && ProtoBufEncoder.getHandlerFunction(temp.prototype.cmd, temp.prototype.scmd) == undefined) {
-						logger.warn(`未找到注册函数 ${key}`);
 					}
 				}
 			}

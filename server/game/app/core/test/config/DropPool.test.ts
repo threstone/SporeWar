@@ -1,4 +1,4 @@
-import { ItemPto } from '../../../servers/logic/src/CommonProto';
+import { ItemPto } from '../../proto/CommonProto';
 import { Cfg } from '../../config/Cfg';
 
 if (Cfg.DropPool == null) {

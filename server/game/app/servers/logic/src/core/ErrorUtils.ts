@@ -1,6 +1,6 @@
 import { RpcRouteType } from 'stone-framework';
-import { ProtoBufEncoder } from './ProtoBufEncoder';
-import { SystemPto } from '../CommonProto';
+import { ProtoBufEncoder } from '../../../../core/proto/ProtoBufEncoder';
+import { SystemPto } from '../../../../core/proto/CommonProto';
 
 export class ErrorUtils {
     static sendErrorMessage(gateNodeId: string, sessionId: number, msg?: string, code: number = 500) {

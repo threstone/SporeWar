@@ -1,6 +1,6 @@
 import { Cfg } from '../../../../../../core/config/Cfg';
 import { EnergyModel } from '../../../../../../core/sequelize/model/game/EnergyModel';
-import { ItemPto } from '../../../CommonProto';
+import { ItemPto } from '../../../../../../core/proto/CommonProto';
 import { Player } from '../../player/Player';
 
 export class Energy {

@@ -1,8 +1,8 @@
 import { UserVo } from "../../vo/UserVo";
 import { BattleModel } from "../model/BattleModel";
-import { Building } from "../model/entity/Building";
-import { Spore } from "../model/entity/Spore";
-import { Entity } from "../model/entity/Entity";
+import { Building } from "../model/simulator/entity/Building";
+import { Spore } from "../model/simulator/entity/Spore";
+import { Entity } from "../model/simulator/entity/Entity";
 import BuildingView from "./entity/BuildingView";
 import BattleUIView from "./entity/BattleUIView";
 import SporeView from "./entity/SporeView";
@@ -90,7 +90,7 @@ export default class BattleView extends BaseView {
         const pos = this.sporeNode.convertToNodeSpaceAR(event.getLocation());
         const buildingNodes = this.getTargetBuildingNode(pos, 50);
         const selectBuilding = buildingNodes[0];
-        if (selectBuilding && simulator.entityMap.get(selectBuilding.id).uid === UserVo.ins().uid) {
+        if (selectBuilding && simulator.entityMap.get(selectBuilding.id).userId === UserVo.ins().userId) {
             this._touchId = event.touch.getID();
             this._selectBuilding = selectBuilding;
             this._arrow.active = true;

@@ -9,7 +9,7 @@ export default class BattleUIView extends cc.Component {
     dispatchBar: cc.ProgressBar = null;
 
     get dispatchRate() {
-        return this.dispatchBar.progress;
+        return Math.floor(this.dispatchBar.progress * 10000);
     }
 
     onCloseBtnClick() {

@@ -1,16 +1,16 @@
 import { BattleModel } from "../BattleModel";
-import { Building } from "../entity/Building";
-import { Simulator } from "../simulator/Simulator";
+import { Building } from "../simulator/entity/Building";
+import { LocalSimulator } from "../simulator/LocalSimulator";
 
 export class Robot {
-    static uid: string = 'robot';
+    static userId: string = 'robot';
 
-    get uid() { return Robot.uid; }
-    
+    get userId() { return Robot.userId; }
+
     private _logicIndex = 0;
     private _oprationInverval: number;
-    constructor(oprationInvervalMs: number = 200) {
-        this._oprationInverval = oprationInvervalMs / 1000 * Simulator.frameRate;
+    constructor(simulator: LocalSimulator, oprationInvervalMs: number = 200) {
+        this._oprationInverval = oprationInvervalMs / 1000 * simulator.frameRate;
     }
 
     update() {
@@ -28,25 +28,25 @@ export class Robot {
 
     private robotLogic() {
         const simulator = BattleModel.ins().simulator;
-        const buildingList = simulator.getBuildingListByUid(this.uid);
+        const buildingList = simulator.getBuildingListByUserId(this.userId);
         const midPos = cc.v2(0, 0);
         buildingList.forEach((building) => { midPos.addSelf(building.position) });
         midPos.divSelf(buildingList.length);
         const sum = this.getCanDispatchSporeNum(buildingList);
-        const enemyBuildingList = simulator.getBuildingListExcludeUid(this.uid)
+        const enemyBuildingList = simulator.getBuildingListExcludeUserId(this.userId)
             .filter(building => sum > building.sporeCount)
             .sort((a, b) => { return a.sporeCount - b.sporeCount })
             .sort((a, b) => { return cc.Vec2.distance(midPos, a.position) - cc.Vec2.distance(midPos, b.position) });
         if (enemyBuildingList.length > 0) {
             const targetBuilding = enemyBuildingList[0];
-            const dispatchRate = Math.max(targetBuilding.sporeCount, 1) / sum * 1.2;
+            const dispatchRate = Math.max(targetBuilding.sporeCount, 1) / sum * 1.2 * 10000;
             buildingList.forEach((builing) => {
                 builing.dispatchSpore(dispatchRate, targetBuilding);
             });
         }
     }
 
-    private getCanDispatchSporeNum(BuildingList: Building[] = BattleModel.ins().simulator.getBuildingListByUid(this.uid)) {
+    private getCanDispatchSporeNum(BuildingList: Building[] = BattleModel.ins().simulator.getBuildingListByUserId(this.userId)) {
         let sum = 0;
         for (const building of BuildingList) {
             sum += building.getUndispathchSporeCount();

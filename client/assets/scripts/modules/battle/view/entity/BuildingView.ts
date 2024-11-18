@@ -1,5 +1,5 @@
 import { UserVo } from "../../../vo/UserVo";
-import { Building } from "../../model/entity/Building";
+import { Building } from "../../model/simulator/entity/Building";
 
 const { ccclass, property } = cc._decorator;
 
@@ -26,11 +26,11 @@ export default class BuildingView extends cc.Component {
         this.countLable.string = `${buildingInfo.sporeCount}`;
         this.progressBar.node.active = false;
         this.countLable.node.color = cc.Color.WHITE;
-        if (buildingInfo.uid) {
-            const selfUid = UserVo.ins().uid;
-            this.countLable.node.color = buildingInfo.uid === selfUid ? cc.Color.GREEN : cc.Color.RED;
+        if (buildingInfo.userId) {
+            const selfUserId = UserVo.ins().userId;
+            this.countLable.node.color = buildingInfo.userId === selfUserId ? cc.Color.GREEN : cc.Color.RED;
             // 仅己方的显示进度条
-            if (buildingInfo.uid === selfUid) {
+            if (buildingInfo.userId === selfUserId) {
                 this.progressBar.node.active = buildingInfo.sporeCount < buildingInfo.maxSporeCount;
                 this.progressBar.progress = buildingInfo.createDt / buildingInfo.createSpeed;
             }
