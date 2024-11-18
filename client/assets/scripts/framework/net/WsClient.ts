@@ -1,7 +1,6 @@
 import { MessageMgr } from "../../manager/MessageMgr";
-import { SingleClass } from "../SingleClass";
 
-export class WsClient extends SingleClass {
+export class WsClient {
     private _ws: WebSocket;
     private _messageQueue: Array<IGameMessage> = [];
 

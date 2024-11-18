@@ -1,6 +1,7 @@
 import { Cfg } from "../../config/Cfg";
 import BaseView from "../../framework/BaseView";
-import { UserVo } from "../vo/UserVo";
+import { MatchPto } from "../../framework/proto/CommonProto";
+import { MatchController } from "../match/MatchController";
 import StageBtn from "./StageBtn";
 
 const { ccclass, property } = cc._decorator;
@@ -12,9 +13,6 @@ export default class HallView extends BaseView {
 
     @property(cc.Prefab)
     stageBtnPrefab: cc.Prefab = null;
-
-    @property(cc.Label)
-    matchBtnLabel: cc.Label = null;
 
     onOpen(): void {
         const stageConfigs = Cfg.Stage.getArray();
@@ -29,42 +27,7 @@ export default class HallView extends BaseView {
     }
 
 
-    private _isMatching: boolean = false;
-    private _startMatchingTime: number;
     onMatchBtnClick() {
-        if (this._isMatching) {
-            this.stopMatching();
-        } else {
-            this.startMatching();
-        }
-    }
-
-    protected update(dt: number): void {
-        if (this._isMatching) {
-            const now = Date.now();
-            const time = now - this._startMatchingTime;
-            this.matchBtnLabel.string = `匹配中,点击取消(${Math.floor(time / 1000)})`;
-        }
-    }
-
-    protected onDisable(): void {
-        this.stopMatching();
-    }
-
-    private startMatching() {
-        if (this._isMatching === true) {
-            return;
-        }
-        this._isMatching = true;
-        this.matchBtnLabel.string = '匹配中,点击取消';
-        this._startMatchingTime = Date.now();
-    }
-
-    private stopMatching() {
-        if (this._isMatching === false) {
-            return;
-        }
-        this._isMatching = false;
-        this.matchBtnLabel.string = '匹配';
+        MatchController.ins().startMatching(MatchPto.MatchTypeEnum.Normal);
     }
 }

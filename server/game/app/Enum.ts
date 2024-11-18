@@ -14,3 +14,8 @@ export enum EventEnum {
 export enum DictEnum {
     IsItemInit = 0,
 }
+
+export enum MatchTypeEnum{
+    Nomal, // 普通匹配
+    Rank,  // 排名匹配
+}

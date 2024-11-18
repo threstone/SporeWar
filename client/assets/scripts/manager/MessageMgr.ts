@@ -7,7 +7,7 @@ declare namespace protobuf {
 		buf: Buffer;
 		pos: number;
 		len: number;
-		static create(Buffer): Reader;
+		static create(buffer:Buffer): Reader;
 	}
 }
 export class MessageMgr {
@@ -58,7 +58,7 @@ export class MessageMgr {
 			return buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength);
 		}
 
-		const raw = protoBufAny.Reader.prototype.int64
+		const raw = protoBufAny.Reader.prototype.int64;
 
 		protoBufAny.Reader.prototype.int64 = function () {
 			const result = raw.call(this)
@@ -73,14 +73,14 @@ export class MessageMgr {
 	public static addHandlerByName(protoName: string, handler: Function) {
 		const index = MessageMgr._indexOfProtoName[protoName];
 		if (index == null) {
-			console.error('不存在的协议', protoName);
+			cc.error('不存在的协议', protoName);
 			return;
 		}
 		if (MessageMgr._messagehandles.has(index)) {
-			console.error('重复注册协议处理函数:', protoName);
+			cc.error('重复注册协议处理函数:', protoName);
 			return;
 		}
-		console.log('注册协议处理函数:', protoName);
+		cc.log('注册协议处理函数:', protoName);
 		MessageMgr._messagehandles.set(index, handler);
 	}
 
@@ -105,7 +105,7 @@ export class MessageMgr {
 
 	public static decode(buffer, offset: number): IGameMessage {
 		if (buffer.length < 8) {
-			console.error("protobuf decode err! buffer长度小于8")
+			cc.error("protobuf decode err! buffer长度小于8")
 			return;
 		}
 		let dataView = new DataView(buffer);
@@ -119,7 +119,7 @@ export class MessageMgr {
 		const messageClass = MessageMgr._protoBufClass.get(messageIndex)
 
 		if (!messageClass) {
-			console.error("无法获取协议:", cmd, scmd)
+			cc.error("无法获取协议:", cmd, scmd)
 			return null;
 		}
 
@@ -130,7 +130,7 @@ export class MessageMgr {
 		try {
 			result = messageClass.decode(MessageMgr._protoBufReader);
 		} catch (e) {
-			console.error("解码消息失败 ：", messageClass.name)
+			cc.error("解码消息失败 ：", messageClass.name)
 		}
 
 		return result;

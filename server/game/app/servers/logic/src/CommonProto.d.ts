@@ -2987,3 +2987,494 @@ export namespace ItemPto {
         public toJSON(): { [k: string]: any };
     }
 }
+
+/** Namespace MatchPto. */
+export namespace MatchPto {
+
+    /** Properties of a C_START_MATCHING. */
+    interface IC_START_MATCHING {
+
+        /** C_START_MATCHING cmd */
+        cmd?: (number|null);
+
+        /** C_START_MATCHING scmd */
+        scmd?: (number|null);
+
+        /** C_START_MATCHING type */
+        type?: (MatchPto.MatchTypeEnum|null);
+    }
+
+    /** Represents a C_START_MATCHING. */
+    class C_START_MATCHING implements IC_START_MATCHING {
+
+        /**
+         * Constructs a new C_START_MATCHING.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: MatchPto.IC_START_MATCHING);
+
+        /** C_START_MATCHING cmd. */
+        public cmd: number;
+
+        /** C_START_MATCHING scmd. */
+        public scmd: number;
+
+        /** C_START_MATCHING type. */
+        public type: MatchPto.MatchTypeEnum;
+
+        /**
+         * Encodes the specified C_START_MATCHING message. Does not implicitly {@link MatchPto.C_START_MATCHING.verify|verify} messages.
+         * @param message C_START_MATCHING message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: MatchPto.IC_START_MATCHING, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified C_START_MATCHING message, length delimited. Does not implicitly {@link MatchPto.C_START_MATCHING.verify|verify} messages.
+         * @param message C_START_MATCHING message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: MatchPto.IC_START_MATCHING, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a C_START_MATCHING message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns C_START_MATCHING
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): MatchPto.C_START_MATCHING;
+
+        /**
+         * Decodes a C_START_MATCHING message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns C_START_MATCHING
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): MatchPto.C_START_MATCHING;
+
+        /**
+         * Verifies a C_START_MATCHING message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a C_START_MATCHING message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns C_START_MATCHING
+         */
+        public static fromObject(object: { [k: string]: any }): MatchPto.C_START_MATCHING;
+
+        /**
+         * Creates a plain object from a C_START_MATCHING message. Also converts values to other types if specified.
+         * @param message C_START_MATCHING
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: MatchPto.C_START_MATCHING, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this C_START_MATCHING to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a S_START_MATCHING. */
+    interface IS_START_MATCHING {
+
+        /** S_START_MATCHING cmd */
+        cmd?: (number|null);
+
+        /** S_START_MATCHING scmd */
+        scmd?: (number|null);
+
+        /** S_START_MATCHING startTime */
+        startTime?: (number|null);
+    }
+
+    /** Represents a S_START_MATCHING. */
+    class S_START_MATCHING implements IS_START_MATCHING {
+
+        /**
+         * Constructs a new S_START_MATCHING.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: MatchPto.IS_START_MATCHING);
+
+        /** S_START_MATCHING cmd. */
+        public cmd: number;
+
+        /** S_START_MATCHING scmd. */
+        public scmd: number;
+
+        /** S_START_MATCHING startTime. */
+        public startTime: number;
+
+        /**
+         * Encodes the specified S_START_MATCHING message. Does not implicitly {@link MatchPto.S_START_MATCHING.verify|verify} messages.
+         * @param message S_START_MATCHING message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: MatchPto.IS_START_MATCHING, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified S_START_MATCHING message, length delimited. Does not implicitly {@link MatchPto.S_START_MATCHING.verify|verify} messages.
+         * @param message S_START_MATCHING message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: MatchPto.IS_START_MATCHING, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a S_START_MATCHING message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns S_START_MATCHING
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): MatchPto.S_START_MATCHING;
+
+        /**
+         * Decodes a S_START_MATCHING message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns S_START_MATCHING
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): MatchPto.S_START_MATCHING;
+
+        /**
+         * Verifies a S_START_MATCHING message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a S_START_MATCHING message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns S_START_MATCHING
+         */
+        public static fromObject(object: { [k: string]: any }): MatchPto.S_START_MATCHING;
+
+        /**
+         * Creates a plain object from a S_START_MATCHING message. Also converts values to other types if specified.
+         * @param message S_START_MATCHING
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: MatchPto.S_START_MATCHING, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this S_START_MATCHING to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a C_CANCEL_MATCHING. */
+    interface IC_CANCEL_MATCHING {
+
+        /** C_CANCEL_MATCHING cmd */
+        cmd?: (number|null);
+
+        /** C_CANCEL_MATCHING scmd */
+        scmd?: (number|null);
+
+        /** C_CANCEL_MATCHING type */
+        type?: (MatchPto.MatchTypeEnum|null);
+    }
+
+    /** Represents a C_CANCEL_MATCHING. */
+    class C_CANCEL_MATCHING implements IC_CANCEL_MATCHING {
+
+        /**
+         * Constructs a new C_CANCEL_MATCHING.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: MatchPto.IC_CANCEL_MATCHING);
+
+        /** C_CANCEL_MATCHING cmd. */
+        public cmd: number;
+
+        /** C_CANCEL_MATCHING scmd. */
+        public scmd: number;
+
+        /** C_CANCEL_MATCHING type. */
+        public type: MatchPto.MatchTypeEnum;
+
+        /**
+         * Encodes the specified C_CANCEL_MATCHING message. Does not implicitly {@link MatchPto.C_CANCEL_MATCHING.verify|verify} messages.
+         * @param message C_CANCEL_MATCHING message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: MatchPto.IC_CANCEL_MATCHING, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified C_CANCEL_MATCHING message, length delimited. Does not implicitly {@link MatchPto.C_CANCEL_MATCHING.verify|verify} messages.
+         * @param message C_CANCEL_MATCHING message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: MatchPto.IC_CANCEL_MATCHING, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a C_CANCEL_MATCHING message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns C_CANCEL_MATCHING
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): MatchPto.C_CANCEL_MATCHING;
+
+        /**
+         * Decodes a C_CANCEL_MATCHING message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns C_CANCEL_MATCHING
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): MatchPto.C_CANCEL_MATCHING;
+
+        /**
+         * Verifies a C_CANCEL_MATCHING message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a C_CANCEL_MATCHING message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns C_CANCEL_MATCHING
+         */
+        public static fromObject(object: { [k: string]: any }): MatchPto.C_CANCEL_MATCHING;
+
+        /**
+         * Creates a plain object from a C_CANCEL_MATCHING message. Also converts values to other types if specified.
+         * @param message C_CANCEL_MATCHING
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: MatchPto.C_CANCEL_MATCHING, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this C_CANCEL_MATCHING to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a S_CANCEL_MATCHING. */
+    interface IS_CANCEL_MATCHING {
+
+        /** S_CANCEL_MATCHING cmd */
+        cmd?: (number|null);
+
+        /** S_CANCEL_MATCHING scmd */
+        scmd?: (number|null);
+    }
+
+    /** Represents a S_CANCEL_MATCHING. */
+    class S_CANCEL_MATCHING implements IS_CANCEL_MATCHING {
+
+        /**
+         * Constructs a new S_CANCEL_MATCHING.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: MatchPto.IS_CANCEL_MATCHING);
+
+        /** S_CANCEL_MATCHING cmd. */
+        public cmd: number;
+
+        /** S_CANCEL_MATCHING scmd. */
+        public scmd: number;
+
+        /**
+         * Encodes the specified S_CANCEL_MATCHING message. Does not implicitly {@link MatchPto.S_CANCEL_MATCHING.verify|verify} messages.
+         * @param message S_CANCEL_MATCHING message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: MatchPto.IS_CANCEL_MATCHING, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified S_CANCEL_MATCHING message, length delimited. Does not implicitly {@link MatchPto.S_CANCEL_MATCHING.verify|verify} messages.
+         * @param message S_CANCEL_MATCHING message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: MatchPto.IS_CANCEL_MATCHING, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a S_CANCEL_MATCHING message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns S_CANCEL_MATCHING
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): MatchPto.S_CANCEL_MATCHING;
+
+        /**
+         * Decodes a S_CANCEL_MATCHING message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns S_CANCEL_MATCHING
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): MatchPto.S_CANCEL_MATCHING;
+
+        /**
+         * Verifies a S_CANCEL_MATCHING message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a S_CANCEL_MATCHING message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns S_CANCEL_MATCHING
+         */
+        public static fromObject(object: { [k: string]: any }): MatchPto.S_CANCEL_MATCHING;
+
+        /**
+         * Creates a plain object from a S_CANCEL_MATCHING message. Also converts values to other types if specified.
+         * @param message S_CANCEL_MATCHING
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: MatchPto.S_CANCEL_MATCHING, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this S_CANCEL_MATCHING to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a S_MATCH_SUCCESS. */
+    interface IS_MATCH_SUCCESS {
+
+        /** S_MATCH_SUCCESS cmd */
+        cmd?: (number|null);
+
+        /** S_MATCH_SUCCESS scmd */
+        scmd?: (number|null);
+
+        /** S_MATCH_SUCCESS battleToken */
+        battleToken?: (string|null);
+
+        /** S_MATCH_SUCCESS address */
+        address?: (string|null);
+
+        /** S_MATCH_SUCCESS expireTime */
+        expireTime?: (number|null);
+    }
+
+    /** Represents a S_MATCH_SUCCESS. */
+    class S_MATCH_SUCCESS implements IS_MATCH_SUCCESS {
+
+        /**
+         * Constructs a new S_MATCH_SUCCESS.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: MatchPto.IS_MATCH_SUCCESS);
+
+        /** S_MATCH_SUCCESS cmd. */
+        public cmd: number;
+
+        /** S_MATCH_SUCCESS scmd. */
+        public scmd: number;
+
+        /** S_MATCH_SUCCESS battleToken. */
+        public battleToken: string;
+
+        /** S_MATCH_SUCCESS address. */
+        public address: string;
+
+        /** S_MATCH_SUCCESS expireTime. */
+        public expireTime: number;
+
+        /**
+         * Encodes the specified S_MATCH_SUCCESS message. Does not implicitly {@link MatchPto.S_MATCH_SUCCESS.verify|verify} messages.
+         * @param message S_MATCH_SUCCESS message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: MatchPto.IS_MATCH_SUCCESS, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified S_MATCH_SUCCESS message, length delimited. Does not implicitly {@link MatchPto.S_MATCH_SUCCESS.verify|verify} messages.
+         * @param message S_MATCH_SUCCESS message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: MatchPto.IS_MATCH_SUCCESS, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a S_MATCH_SUCCESS message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns S_MATCH_SUCCESS
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): MatchPto.S_MATCH_SUCCESS;
+
+        /**
+         * Decodes a S_MATCH_SUCCESS message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns S_MATCH_SUCCESS
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): MatchPto.S_MATCH_SUCCESS;
+
+        /**
+         * Verifies a S_MATCH_SUCCESS message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a S_MATCH_SUCCESS message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns S_MATCH_SUCCESS
+         */
+        public static fromObject(object: { [k: string]: any }): MatchPto.S_MATCH_SUCCESS;
+
+        /**
+         * Creates a plain object from a S_MATCH_SUCCESS message. Also converts values to other types if specified.
+         * @param message S_MATCH_SUCCESS
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: MatchPto.S_MATCH_SUCCESS, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this S_MATCH_SUCCESS to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** MatchTypeEnum enum. */
+    enum MatchTypeEnum {
+        Normal = 0,
+        Rank = 1
+    }
+}

@@ -1,0 +1,42 @@
+syntax = "proto3";
+package MatchPto;
+
+// 匹配
+message C_START_MATCHING{
+	int32 cmd = 1[default = 4];
+	int32 scmd = 2[default = 1];
+	MatchTypeEnum type = 3;
+}
+
+message S_START_MATCHING{
+	int32 cmd = 1[default = 4];
+	int32 scmd = 2[default = 2];
+	uint64 startTime = 3;	
+}
+
+// 取消匹配
+message C_CANCEL_MATCHING{
+	int32 cmd = 1[default = 4];
+	int32 scmd = 2[default = 3];
+	MatchTypeEnum type = 3;
+}
+
+// 如果在匹配成功后收到,则不需要处理了
+message S_CANCEL_MATCHING{
+	int32 cmd = 1[default = 4];
+	int32 scmd = 2[default = 4];
+}
+
+// 匹配成功
+message S_MATCH_SUCCESS{
+	int32 cmd = 1[default = 4];
+	int32 scmd = 2[default = 5];
+	string battleToken = 3;
+	string address = 4;
+	uint64 expireTime = 5;
+}
+
+enum MatchTypeEnum{
+	Normal = 0; // 普通匹配
+	Rank = 1; // 天梯
+}

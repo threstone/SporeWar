@@ -1,7 +1,7 @@
 import { BaseModel } from "../../framework/BaseModel";
 import { HttpClient } from "../../framework/net/HttpClient";
-import { WsClient } from "../../framework/net/WsClient";
 import { ServerPto } from "../../framework/proto/CommonProto";
+import { Manager } from "../../manager/Manger";
 import { StorageMgr } from "../../manager/StorageMgr";
 import { ViewMgr } from "../../manager/ViewMgr";
 import Encrypt from "../../util/Encrypt";
@@ -14,8 +14,8 @@ export class LoginModel extends BaseModel {
             this._account = account;
             const data = { account };
             const result = await HttpClient.httpPost(url, { content: Encrypt.encrypt(JSON.stringify(data), "abcdef") });
-            WsClient.ins().connect(result.url);
-            WsClient.ins().sendMessage(new ServerPto.C_CONNECT({ serverId: result.serverId, token: result.token }));
+            Manager.socketClientMgr.connect(result.url);
+            this.sendGameMessage(new ServerPto.C_CONNECT({ serverId: result.serverId, token: result.token }));
         } catch (error) {
             cc.error('登录失败', error);
         }

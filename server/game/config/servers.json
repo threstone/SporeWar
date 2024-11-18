@@ -40,6 +40,32 @@
                 "logLevel": "all"
             }
         ],
+        "battle": [
+            {
+                "nodeId": "battle1",
+                "autuResume": false,
+                "logTrace": true,
+                "logLevel": "all",
+                "ip": "192.168.20.61",
+                "port": 21001
+            },
+            {
+                "nodeId": "battle2",
+                "autuResume": false,
+                "logTrace": true,
+                "logLevel": "all",
+                "ip": "192.168.20.61",
+                "port": 21002
+            }
+        ],
+        "match": [
+            {
+                "nodeId": "match1",
+                "autuResume": false,
+                "logTrace": true,
+                "logLevel": "all"
+            }
+        ],
         "game": [
             {
                 "nodeId": "game",

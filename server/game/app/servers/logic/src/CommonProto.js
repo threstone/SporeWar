@@ -1703,4 +1703,284 @@ $root.ItemPto = (function() {
     return ItemPto;
 })();
 
+$root.MatchPto = (function() {
+
+    var MatchPto = {};
+
+    MatchPto.C_START_MATCHING = (function() {
+
+        function C_START_MATCHING(p) {
+            if (p)
+                for (var ks = Object.keys(p), i = 0; i < ks.length; ++i)
+                    if (p[ks[i]] != null)
+                        this[ks[i]] = p[ks[i]];
+        }
+
+        C_START_MATCHING.prototype.cmd = 4;
+        C_START_MATCHING.prototype.scmd = 1;
+        C_START_MATCHING.prototype.type = 0;
+
+        C_START_MATCHING.encode = function encode(m, w) {
+            if (!w)
+                w = $Writer.create();
+            if (m.cmd != null && Object.hasOwnProperty.call(m, "cmd"))
+                w.uint32(8).int32(m.cmd);
+            if (m.scmd != null && Object.hasOwnProperty.call(m, "scmd"))
+                w.uint32(16).int32(m.scmd);
+            if (m.type != null && Object.hasOwnProperty.call(m, "type"))
+                w.uint32(24).int32(m.type);
+            return w;
+        };
+
+        C_START_MATCHING.decode = function decode(r, l) {
+            if (!(r instanceof $Reader))
+                r = $Reader.create(r);
+            var c = l === undefined ? r.len : r.pos + l, m = new $root.MatchPto.C_START_MATCHING();
+            while (r.pos < c) {
+                var t = r.uint32();
+                switch (t >>> 3) {
+                case 1:
+                    m.cmd = r.int32();
+                    break;
+                case 2:
+                    m.scmd = r.int32();
+                    break;
+                case 3:
+                    m.type = r.int32();
+                    break;
+                default:
+                    r.skipType(t & 7);
+                    break;
+                }
+            }
+            return m;
+        };
+
+        return C_START_MATCHING;
+    })();
+
+    MatchPto.S_START_MATCHING = (function() {
+
+        function S_START_MATCHING(p) {
+            if (p)
+                for (var ks = Object.keys(p), i = 0; i < ks.length; ++i)
+                    if (p[ks[i]] != null)
+                        this[ks[i]] = p[ks[i]];
+        }
+
+        S_START_MATCHING.prototype.cmd = 4;
+        S_START_MATCHING.prototype.scmd = 2;
+        S_START_MATCHING.prototype.startTime = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
+
+        S_START_MATCHING.encode = function encode(m, w) {
+            if (!w)
+                w = $Writer.create();
+            if (m.cmd != null && Object.hasOwnProperty.call(m, "cmd"))
+                w.uint32(8).int32(m.cmd);
+            if (m.scmd != null && Object.hasOwnProperty.call(m, "scmd"))
+                w.uint32(16).int32(m.scmd);
+            if (m.startTime != null && Object.hasOwnProperty.call(m, "startTime"))
+                w.uint32(24).uint64(m.startTime);
+            return w;
+        };
+
+        S_START_MATCHING.decode = function decode(r, l) {
+            if (!(r instanceof $Reader))
+                r = $Reader.create(r);
+            var c = l === undefined ? r.len : r.pos + l, m = new $root.MatchPto.S_START_MATCHING();
+            while (r.pos < c) {
+                var t = r.uint32();
+                switch (t >>> 3) {
+                case 1:
+                    m.cmd = r.int32();
+                    break;
+                case 2:
+                    m.scmd = r.int32();
+                    break;
+                case 3:
+                    m.startTime = r.uint64();
+                    break;
+                default:
+                    r.skipType(t & 7);
+                    break;
+                }
+            }
+            return m;
+        };
+
+        return S_START_MATCHING;
+    })();
+
+    MatchPto.C_CANCEL_MATCHING = (function() {
+
+        function C_CANCEL_MATCHING(p) {
+            if (p)
+                for (var ks = Object.keys(p), i = 0; i < ks.length; ++i)
+                    if (p[ks[i]] != null)
+                        this[ks[i]] = p[ks[i]];
+        }
+
+        C_CANCEL_MATCHING.prototype.cmd = 4;
+        C_CANCEL_MATCHING.prototype.scmd = 3;
+        C_CANCEL_MATCHING.prototype.type = 0;
+
+        C_CANCEL_MATCHING.encode = function encode(m, w) {
+            if (!w)
+                w = $Writer.create();
+            if (m.cmd != null && Object.hasOwnProperty.call(m, "cmd"))
+                w.uint32(8).int32(m.cmd);
+            if (m.scmd != null && Object.hasOwnProperty.call(m, "scmd"))
+                w.uint32(16).int32(m.scmd);
+            if (m.type != null && Object.hasOwnProperty.call(m, "type"))
+                w.uint32(24).int32(m.type);
+            return w;
+        };
+
+        C_CANCEL_MATCHING.decode = function decode(r, l) {
+            if (!(r instanceof $Reader))
+                r = $Reader.create(r);
+            var c = l === undefined ? r.len : r.pos + l, m = new $root.MatchPto.C_CANCEL_MATCHING();
+            while (r.pos < c) {
+                var t = r.uint32();
+                switch (t >>> 3) {
+                case 1:
+                    m.cmd = r.int32();
+                    break;
+                case 2:
+                    m.scmd = r.int32();
+                    break;
+                case 3:
+                    m.type = r.int32();
+                    break;
+                default:
+                    r.skipType(t & 7);
+                    break;
+                }
+            }
+            return m;
+        };
+
+        return C_CANCEL_MATCHING;
+    })();
+
+    MatchPto.S_CANCEL_MATCHING = (function() {
+
+        function S_CANCEL_MATCHING(p) {
+            if (p)
+                for (var ks = Object.keys(p), i = 0; i < ks.length; ++i)
+                    if (p[ks[i]] != null)
+                        this[ks[i]] = p[ks[i]];
+        }
+
+        S_CANCEL_MATCHING.prototype.cmd = 4;
+        S_CANCEL_MATCHING.prototype.scmd = 4;
+
+        S_CANCEL_MATCHING.encode = function encode(m, w) {
+            if (!w)
+                w = $Writer.create();
+            if (m.cmd != null && Object.hasOwnProperty.call(m, "cmd"))
+                w.uint32(8).int32(m.cmd);
+            if (m.scmd != null && Object.hasOwnProperty.call(m, "scmd"))
+                w.uint32(16).int32(m.scmd);
+            return w;
+        };
+
+        S_CANCEL_MATCHING.decode = function decode(r, l) {
+            if (!(r instanceof $Reader))
+                r = $Reader.create(r);
+            var c = l === undefined ? r.len : r.pos + l, m = new $root.MatchPto.S_CANCEL_MATCHING();
+            while (r.pos < c) {
+                var t = r.uint32();
+                switch (t >>> 3) {
+                case 1:
+                    m.cmd = r.int32();
+                    break;
+                case 2:
+                    m.scmd = r.int32();
+                    break;
+                default:
+                    r.skipType(t & 7);
+                    break;
+                }
+            }
+            return m;
+        };
+
+        return S_CANCEL_MATCHING;
+    })();
+
+    MatchPto.S_MATCH_SUCCESS = (function() {
+
+        function S_MATCH_SUCCESS(p) {
+            if (p)
+                for (var ks = Object.keys(p), i = 0; i < ks.length; ++i)
+                    if (p[ks[i]] != null)
+                        this[ks[i]] = p[ks[i]];
+        }
+
+        S_MATCH_SUCCESS.prototype.cmd = 4;
+        S_MATCH_SUCCESS.prototype.scmd = 5;
+        S_MATCH_SUCCESS.prototype.battleToken = "";
+        S_MATCH_SUCCESS.prototype.address = "";
+        S_MATCH_SUCCESS.prototype.expireTime = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
+
+        S_MATCH_SUCCESS.encode = function encode(m, w) {
+            if (!w)
+                w = $Writer.create();
+            if (m.cmd != null && Object.hasOwnProperty.call(m, "cmd"))
+                w.uint32(8).int32(m.cmd);
+            if (m.scmd != null && Object.hasOwnProperty.call(m, "scmd"))
+                w.uint32(16).int32(m.scmd);
+            if (m.battleToken != null && Object.hasOwnProperty.call(m, "battleToken"))
+                w.uint32(26).string(m.battleToken);
+            if (m.address != null && Object.hasOwnProperty.call(m, "address"))
+                w.uint32(34).string(m.address);
+            if (m.expireTime != null && Object.hasOwnProperty.call(m, "expireTime"))
+                w.uint32(40).uint64(m.expireTime);
+            return w;
+        };
+
+        S_MATCH_SUCCESS.decode = function decode(r, l) {
+            if (!(r instanceof $Reader))
+                r = $Reader.create(r);
+            var c = l === undefined ? r.len : r.pos + l, m = new $root.MatchPto.S_MATCH_SUCCESS();
+            while (r.pos < c) {
+                var t = r.uint32();
+                switch (t >>> 3) {
+                case 1:
+                    m.cmd = r.int32();
+                    break;
+                case 2:
+                    m.scmd = r.int32();
+                    break;
+                case 3:
+                    m.battleToken = r.string();
+                    break;
+                case 4:
+                    m.address = r.string();
+                    break;
+                case 5:
+                    m.expireTime = r.uint64();
+                    break;
+                default:
+                    r.skipType(t & 7);
+                    break;
+                }
+            }
+            return m;
+        };
+
+        return S_MATCH_SUCCESS;
+    })();
+
+    MatchPto.MatchTypeEnum = (function() {
+        var valuesById = {}, values = Object.create(valuesById);
+        values[valuesById[0] = "Normal"] = 0;
+        values[valuesById[1] = "Rank"] = 1;
+        return values;
+    })();
+
+    return MatchPto;
+})();
+
 module.exports = $root;
