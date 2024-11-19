@@ -36,6 +36,8 @@ export class BattleController extends SingleClass {
         this.view.endBattle();
         if (!winUserId) {
             ViewMgr.ins().closeView('/prefab/battle/BattleView');
+        } else {
+            ViewMgr.ins().openView('/prefab/battle/ResultView', winUserId);
         }
     }
 

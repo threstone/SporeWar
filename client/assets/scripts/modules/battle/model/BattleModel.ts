@@ -50,5 +50,9 @@ export class BattleModel extends BaseModel {
         simulator.handleDispatchInfo(msg);
         simulator?.update();
     }
+
+    S_BATTLE_END(msg: BattlePto.S_BATTLE_END) {
+        this.simulator.onGameOver(msg.winUserId);
+    }
 }
 

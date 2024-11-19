@@ -69,4 +69,12 @@ export class BattleTable {
     addDispatchInfo(dispatchInfo: BattlePto.IDispatchInfo) {
         this._dispatchInfos.push(dispatchInfo);
     }
+
+    onGameOver(winUserId: string) {
+        if (this._isDestroy) {
+            return;
+        }
+        this._isDestroy = true;
+        this.broadcast(new BattlePto.S_BATTLE_END({ winUserId }));
+    }
 }

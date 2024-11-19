@@ -28,14 +28,9 @@ export class Simulator {
     frameRate: number;
     frameInterval: number;
 
-    tk = 0;
     constructor(frameRate: number) {
         this.frameRate = frameRate;
         this.frameInterval = 1 / frameRate;
-        setInterval(() => {
-            console.log(`过去1s tk = `, this.tk);
-            this.tk = 0;
-        }, 1000);
     }
 
     startBattle(mapId: number, p1UserId: string, p2UserId: string, seed: number = 0) {
@@ -68,7 +63,6 @@ export class Simulator {
     }
 
     update() {
-        this.tk++;
         this.entityMap.forEach(entity => {
             if (entity.isDestroy) {
                 this.entityMap.delete(entity.id);
@@ -104,7 +98,7 @@ export class Simulator {
         this.onGameOver(userId1);
     }
 
-    protected onGameOver(winUserId: string) {
+    onGameOver(winUserId: string) {
         console.log('game over win userId:', winUserId);
         Notifier.send(NotifyID.EndBattle, winUserId);
     }

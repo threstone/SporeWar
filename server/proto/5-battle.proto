@@ -36,15 +36,22 @@ message S_BATTLE_LOGIC_FRAME{
 	repeated DispatchInfo dispatchInfos = 3;
 }
 
-message S_BATTLE_END{
-	int32 cmd = 1[default = 5];
-	int32 scmd = 2[default = 6];
-}
-
 message C_BATTLE_DISPATCH{
 	int32 cmd = 1[default = 5];
-	int32 scmd = 2[default = 7];
+	int32 scmd = 2[default = 6];
 	DispatchInfo dispatchInfo = 3;
+}
+
+message C_BATTLE_END{
+	int32 cmd = 1[default = 5];
+	int32 scmd = 2[default = 7];
+	string winUserId = 3;
+}
+
+message S_BATTLE_END{
+	int32 cmd = 1[default = 5];
+	int32 scmd = 2[default = 8];
+	string winUserId = 3;
 }
 
 message DispatchInfo{

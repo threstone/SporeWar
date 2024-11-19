@@ -1,4 +1,5 @@
 import { BattlePto } from "../../../../framework/proto/CommonProto";
+import { Manager } from "../../../../manager/Manger";
 import { OnlineHandler } from "./inputHandler/OnlineHandler";
 import { Simulator } from "./Simulator";
 
@@ -13,5 +14,10 @@ export class OnlineSimulator extends Simulator {
         msg.dispatchInfos.forEach((info) => {
             this.buildingMap.get(info.fromId).dispatchSpore(info.dispatchRate, this.buildingMap.get(info.targetId));
         });
+    }
+
+    onGameOver(winUserId: string): void {
+        super.onGameOver(winUserId);
+        Manager.socketClientMgr.sendBattleMessage(new BattlePto.C_BATTLE_END({ winUserId }))
     }
 }

@@ -2270,52 +2270,6 @@ $root.BattlePto = (function() {
         return S_BATTLE_LOGIC_FRAME;
     })();
 
-    BattlePto.S_BATTLE_END = (function() {
-
-        function S_BATTLE_END(p) {
-            if (p)
-                for (var ks = Object.keys(p), i = 0; i < ks.length; ++i)
-                    if (p[ks[i]] != null)
-                        this[ks[i]] = p[ks[i]];
-        }
-
-        S_BATTLE_END.prototype.cmd = 5;
-        S_BATTLE_END.prototype.scmd = 6;
-
-        S_BATTLE_END.encode = function encode(m, w) {
-            if (!w)
-                w = $Writer.create();
-            if (m.cmd != null && Object.hasOwnProperty.call(m, "cmd"))
-                w.uint32(8).int32(m.cmd);
-            if (m.scmd != null && Object.hasOwnProperty.call(m, "scmd"))
-                w.uint32(16).int32(m.scmd);
-            return w;
-        };
-
-        S_BATTLE_END.decode = function decode(r, l) {
-            if (!(r instanceof $Reader))
-                r = $Reader.create(r);
-            var c = l === undefined ? r.len : r.pos + l, m = new $root.BattlePto.S_BATTLE_END();
-            while (r.pos < c) {
-                var t = r.uint32();
-                switch (t >>> 3) {
-                case 1:
-                    m.cmd = r.int32();
-                    break;
-                case 2:
-                    m.scmd = r.int32();
-                    break;
-                default:
-                    r.skipType(t & 7);
-                    break;
-                }
-            }
-            return m;
-        };
-
-        return S_BATTLE_END;
-    })();
-
     BattlePto.C_BATTLE_DISPATCH = (function() {
 
         function C_BATTLE_DISPATCH(p) {
@@ -2326,7 +2280,7 @@ $root.BattlePto = (function() {
         }
 
         C_BATTLE_DISPATCH.prototype.cmd = 5;
-        C_BATTLE_DISPATCH.prototype.scmd = 7;
+        C_BATTLE_DISPATCH.prototype.scmd = 6;
         C_BATTLE_DISPATCH.prototype.dispatchInfo = null;
 
         C_BATTLE_DISPATCH.encode = function encode(m, w) {
@@ -2366,6 +2320,110 @@ $root.BattlePto = (function() {
         };
 
         return C_BATTLE_DISPATCH;
+    })();
+
+    BattlePto.C_BATTLE_END = (function() {
+
+        function C_BATTLE_END(p) {
+            if (p)
+                for (var ks = Object.keys(p), i = 0; i < ks.length; ++i)
+                    if (p[ks[i]] != null)
+                        this[ks[i]] = p[ks[i]];
+        }
+
+        C_BATTLE_END.prototype.cmd = 5;
+        C_BATTLE_END.prototype.scmd = 7;
+        C_BATTLE_END.prototype.winUserId = "";
+
+        C_BATTLE_END.encode = function encode(m, w) {
+            if (!w)
+                w = $Writer.create();
+            if (m.cmd != null && Object.hasOwnProperty.call(m, "cmd"))
+                w.uint32(8).int32(m.cmd);
+            if (m.scmd != null && Object.hasOwnProperty.call(m, "scmd"))
+                w.uint32(16).int32(m.scmd);
+            if (m.winUserId != null && Object.hasOwnProperty.call(m, "winUserId"))
+                w.uint32(26).string(m.winUserId);
+            return w;
+        };
+
+        C_BATTLE_END.decode = function decode(r, l) {
+            if (!(r instanceof $Reader))
+                r = $Reader.create(r);
+            var c = l === undefined ? r.len : r.pos + l, m = new $root.BattlePto.C_BATTLE_END();
+            while (r.pos < c) {
+                var t = r.uint32();
+                switch (t >>> 3) {
+                case 1:
+                    m.cmd = r.int32();
+                    break;
+                case 2:
+                    m.scmd = r.int32();
+                    break;
+                case 3:
+                    m.winUserId = r.string();
+                    break;
+                default:
+                    r.skipType(t & 7);
+                    break;
+                }
+            }
+            return m;
+        };
+
+        return C_BATTLE_END;
+    })();
+
+    BattlePto.S_BATTLE_END = (function() {
+
+        function S_BATTLE_END(p) {
+            if (p)
+                for (var ks = Object.keys(p), i = 0; i < ks.length; ++i)
+                    if (p[ks[i]] != null)
+                        this[ks[i]] = p[ks[i]];
+        }
+
+        S_BATTLE_END.prototype.cmd = 5;
+        S_BATTLE_END.prototype.scmd = 8;
+        S_BATTLE_END.prototype.winUserId = "";
+
+        S_BATTLE_END.encode = function encode(m, w) {
+            if (!w)
+                w = $Writer.create();
+            if (m.cmd != null && Object.hasOwnProperty.call(m, "cmd"))
+                w.uint32(8).int32(m.cmd);
+            if (m.scmd != null && Object.hasOwnProperty.call(m, "scmd"))
+                w.uint32(16).int32(m.scmd);
+            if (m.winUserId != null && Object.hasOwnProperty.call(m, "winUserId"))
+                w.uint32(26).string(m.winUserId);
+            return w;
+        };
+
+        S_BATTLE_END.decode = function decode(r, l) {
+            if (!(r instanceof $Reader))
+                r = $Reader.create(r);
+            var c = l === undefined ? r.len : r.pos + l, m = new $root.BattlePto.S_BATTLE_END();
+            while (r.pos < c) {
+                var t = r.uint32();
+                switch (t >>> 3) {
+                case 1:
+                    m.cmd = r.int32();
+                    break;
+                case 2:
+                    m.scmd = r.int32();
+                    break;
+                case 3:
+                    m.winUserId = r.string();
+                    break;
+                default:
+                    r.skipType(t & 7);
+                    break;
+                }
+            }
+            return m;
+        };
+
+        return S_BATTLE_END;
     })();
 
     BattlePto.DispatchInfo = (function() {

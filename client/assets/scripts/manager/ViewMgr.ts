@@ -1,7 +1,7 @@
 import BaseView from "../framework/BaseView";
 import { SingleClass } from "../framework/SingleClass";
 
-export class ViewMgr extends SingleClass{
+export class ViewMgr extends SingleClass {
 
     private _canvas: cc.Node;
 
@@ -29,7 +29,9 @@ export class ViewMgr extends SingleClass{
                         reject(err);
                     } else {
                         const node = cc.instantiate(prefab);
-                        node.getComponent(BaseView).onOpen(...args);
+                        const baseView = node.getComponent(BaseView);
+                        baseView.prefabPath = path;
+                        baseView.onOpen(...args);
                         this._viewMap.set(path, node);
                         this._canvas.addChild(node);
                         resolve(node);
