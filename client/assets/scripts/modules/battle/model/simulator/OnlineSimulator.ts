@@ -10,10 +10,16 @@ export class OnlineSimulator extends Simulator {
     }
 
     handleDispatchInfo(msg: BattlePto.S_BATTLE_LOGIC_FRAME) {
+        if (msg.leastStartFrame > 0) {
+            this.leastStartFrame = msg.leastStartFrame;
+        }
+        
+        this.update();
         if (msg.dispatchInfos.length === 0) { return; }
         msg.dispatchInfos.forEach((info) => {
             this.buildingMap.get(info.fromId).dispatchSpore(info.dispatchRate, this.buildingMap.get(info.targetId));
         });
+
     }
 
     onGameOver(winUserId: string): void {

@@ -28,6 +28,12 @@ export default class BattleView extends BaseView {
     @property(cc.Prefab)
     spore: cc.Prefab = null;
 
+    @property(cc.Node)
+    startTipsNode: cc.Node = null;
+
+    @property(cc.Label)
+    startTipsLabel: cc.Label = null;
+
     private _uiView: BattleUIView;
     private _entityNodeMap: Map<number, EntityNode>;
 
@@ -45,10 +51,10 @@ export default class BattleView extends BaseView {
     }
 
     onOpen(): void {
-        this._arrow.active = false;
     }
 
     onClose(): void {
+        this._arrow.active = false;
     }
 
     changeListener(enable: boolean) { }
@@ -82,6 +88,17 @@ export default class BattleView extends BaseView {
     protected update(): void {
         if (!BattleModel.ins().simulator) { return; }
         this.updateEntitys();
+        this.updateStartTips();
+    }
+
+    private updateStartTips() {
+        const simulator = BattleModel.ins().simulator;
+        const leastStartFrame = simulator.leastStartFrame;
+        this.startTipsNode.active = false;
+        if (leastStartFrame > 0) {
+            this.startTipsNode.active = true;
+            this.startTipsLabel.string = `倒计时:${Math.floor(leastStartFrame * simulator.frameInterval) + 1}`;
+        }
     }
 
     private _touchId: number;

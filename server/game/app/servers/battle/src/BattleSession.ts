@@ -46,6 +46,7 @@ export class BattleSession extends WebSocketSession {
 
     onClose(): void {
         this._prepareTable?.onPlayerDisConnect(this);
+        this._battleTable?.onPlayerDisConnect(this);
     }
 
     startBattle(table: BattleTable) {

@@ -2220,6 +2220,7 @@ $root.BattlePto = (function() {
         S_BATTLE_LOGIC_FRAME.prototype.cmd = 5;
         S_BATTLE_LOGIC_FRAME.prototype.scmd = 5;
         S_BATTLE_LOGIC_FRAME.prototype.dispatchInfos = $util.emptyArray;
+        S_BATTLE_LOGIC_FRAME.prototype.leastStartFrame = 0;
 
         S_BATTLE_LOGIC_FRAME.encode = function encode(m, w) {
             if (!w)
@@ -2232,6 +2233,8 @@ $root.BattlePto = (function() {
                 for (var i = 0; i < m.dispatchInfos.length; ++i)
                     $root.BattlePto.DispatchInfo.encode(m.dispatchInfos[i], w.uint32(26).fork()).ldelim();
             }
+            if (m.leastStartFrame != null && Object.hasOwnProperty.call(m, "leastStartFrame"))
+                w.uint32(32).int32(m.leastStartFrame);
             return w;
         };
 
@@ -2252,6 +2255,9 @@ $root.BattlePto = (function() {
                     if (!(m.dispatchInfos && m.dispatchInfos.length))
                         m.dispatchInfos = [];
                     m.dispatchInfos.push($root.BattlePto.DispatchInfo.decode(r, r.uint32()));
+                    break;
+                case 4:
+                    m.leastStartFrame = r.int32();
                     break;
                 default:
                     r.skipType(t & 7);

@@ -28,9 +28,13 @@ export class Simulator {
     frameRate: number;
     frameInterval: number;
 
+    // 距离正式开始还有多少帧
+    leastStartFrame: number;
+
     constructor(frameRate: number) {
         this.frameRate = frameRate;
         this.frameInterval = 1 / frameRate;
+        this.leastStartFrame = frameRate * 3;
     }
 
     startBattle(mapId: number, p1UserId: string, p2UserId: string, seed: number = 0) {
@@ -63,6 +67,11 @@ export class Simulator {
     }
 
     update() {
+        if (this.leastStartFrame > 0) {
+            this.leastStartFrame--;
+            return;
+        }
+
         this.entityMap.forEach(entity => {
             if (entity.isDestroy) {
                 this.entityMap.delete(entity.id);

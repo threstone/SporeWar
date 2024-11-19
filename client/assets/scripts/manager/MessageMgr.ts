@@ -193,7 +193,7 @@ export class MessageMgr {
 				}
 			}
 		} catch (e) {
-			cc.error("解码消息失败 :", messageClass.name)
+			cc.error("解码消息失败 :", messageClass.name, e)
 		}
 
 	}

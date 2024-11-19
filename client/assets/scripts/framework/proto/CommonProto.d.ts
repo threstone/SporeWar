@@ -3885,6 +3885,9 @@ export namespace BattlePto {
 
         /** S_BATTLE_LOGIC_FRAME dispatchInfos */
         dispatchInfos?: (BattlePto.IDispatchInfo[]|null);
+
+        /** S_BATTLE_LOGIC_FRAME leastStartFrame */
+        leastStartFrame?: (number|null);
     }
 
     /** Represents a S_BATTLE_LOGIC_FRAME. */
@@ -3904,6 +3907,9 @@ export namespace BattlePto {
 
         /** S_BATTLE_LOGIC_FRAME dispatchInfos. */
         public dispatchInfos: BattlePto.IDispatchInfo[];
+
+        /** S_BATTLE_LOGIC_FRAME leastStartFrame. */
+        public leastStartFrame: number;
 
         /**
          * Encodes the specified S_BATTLE_LOGIC_FRAME message. Does not implicitly {@link BattlePto.S_BATTLE_LOGIC_FRAME.verify|verify} messages.

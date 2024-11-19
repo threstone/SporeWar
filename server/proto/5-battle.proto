@@ -34,6 +34,7 @@ message S_BATTLE_LOGIC_FRAME{
 	int32 cmd = 1[default = 5];
 	int32 scmd = 2[default = 5];
 	repeated DispatchInfo dispatchInfos = 3;
+	int32 leastStartFrame = 4;
 }
 
 message C_BATTLE_DISPATCH{

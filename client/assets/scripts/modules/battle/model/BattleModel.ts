@@ -2,6 +2,7 @@ import { BaseModel } from "../../../framework/BaseModel";
 import { Notifier } from "../../../framework/notify/Notifier";
 import { NotifyID } from "../../../framework/notify/NotifyID";
 import { BattlePto } from "../../../framework/proto/CommonProto";
+import { UserVo } from "../../vo/UserVo";
 import { LocalSimulator } from "./simulator/LocalSimulator";
 import { OnlineSimulator } from "./simulator/OnlineSimulator";
 import { Simulator, SimulatorTypeEnum } from "./simulator/Simulator";
@@ -47,12 +48,12 @@ export class BattleModel extends BaseModel {
 
     S_BATTLE_LOGIC_FRAME(msg: BattlePto.S_BATTLE_LOGIC_FRAME) {
         const simulator = this.simulator as OnlineSimulator;
-        simulator.handleDispatchInfo(msg);
-        simulator?.update();
+        simulator?.handleDispatchInfo(msg);
+     
     }
 
     S_BATTLE_END(msg: BattlePto.S_BATTLE_END) {
-        this.simulator.onGameOver(msg.winUserId);
+        this.simulator.onGameOver(msg.winUserId || UserVo.ins().userId);
     }
 }
 

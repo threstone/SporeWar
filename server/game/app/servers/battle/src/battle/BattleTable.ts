@@ -18,6 +18,8 @@ export class BattleTable {
 
     private _dispatchInfos: BattlePto.IDispatchInfo[] = [];
 
+    private _leastStartFrame: number = 3 * BattleTable.FrameRate;
+
     constructor(tableId: number, randomSeed: number, session1: BattleSession, session2: BattleSession) {
         this.tableId = tableId;
         this.random = new Random(randomSeed);
@@ -27,6 +29,11 @@ export class BattleTable {
     }
 
     onRun() {
+        if (this._leastStartFrame > 0) {
+            this._leastStartFrame -= 1;
+            this.broadcast(new BattlePto.S_BATTLE_LOGIC_FRAME({ leastStartFrame: this._leastStartFrame }));
+            return;
+        }
         this.broadcast(new BattlePto.S_BATTLE_LOGIC_FRAME({ dispatchInfos: this._dispatchInfos }));
         if (this._dispatchInfos.length !== 0) {
             this._dispatchInfos = [];
@@ -76,5 +83,11 @@ export class BattleTable {
         }
         this._isDestroy = true;
         this.broadcast(new BattlePto.S_BATTLE_END({ winUserId }));
+    }
+
+    onPlayerDisConnect(session: BattleSession) {
+        this._isDestroy = true;
+        this.sessions.splice(this.sessions.indexOf(session), 1);
+        this.broadcast(new BattlePto.S_BATTLE_END());
     }
 }
