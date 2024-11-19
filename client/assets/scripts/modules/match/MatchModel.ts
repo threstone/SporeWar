@@ -27,9 +27,9 @@ export class MatchModel extends BaseModel {
         Manager.viewMgr.closeView('/prefab/match/MatchView');
     }
 
-    S_START_MATCHING(msg: MatchPto.S_START_MATCHING) {
+    S_START_MATCHING() {
         this.isMatching = true;
-        Manager.viewMgr.openView('/prefab/match/MatchView', msg.startTime);
+        Manager.viewMgr.openView('/prefab/match/MatchView');
     }
 
     S_CANCEL_MATCHING(msg: MatchPto.S_MATCH_SUCCESS) {

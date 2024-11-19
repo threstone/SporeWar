@@ -3094,9 +3094,6 @@ export namespace MatchPto {
 
         /** S_START_MATCHING scmd */
         scmd?: (number|null);
-
-        /** S_START_MATCHING startTime */
-        startTime?: (number|null);
     }
 
     /** Represents a S_START_MATCHING. */
@@ -3113,9 +3110,6 @@ export namespace MatchPto {
 
         /** S_START_MATCHING scmd. */
         public scmd: number;
-
-        /** S_START_MATCHING startTime. */
-        public startTime: number;
 
         /**
          * Encodes the specified S_START_MATCHING message. Does not implicitly {@link MatchPto.S_START_MATCHING.verify|verify} messages.
@@ -4350,6 +4344,200 @@ export namespace BattlePto {
 
         /**
          * Converts this DispatchInfo to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+}
+
+/** Namespace StagePto. */
+export namespace StagePto {
+
+    /** Properties of a C_PASS_STAGE. */
+    interface IC_PASS_STAGE {
+
+        /** C_PASS_STAGE cmd */
+        cmd?: (number|null);
+
+        /** C_PASS_STAGE scmd */
+        scmd?: (number|null);
+
+        /** C_PASS_STAGE stageId */
+        stageId?: (number|null);
+    }
+
+    /** Represents a C_PASS_STAGE. */
+    class C_PASS_STAGE implements IC_PASS_STAGE {
+
+        /**
+         * Constructs a new C_PASS_STAGE.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: StagePto.IC_PASS_STAGE);
+
+        /** C_PASS_STAGE cmd. */
+        public cmd: number;
+
+        /** C_PASS_STAGE scmd. */
+        public scmd: number;
+
+        /** C_PASS_STAGE stageId. */
+        public stageId: number;
+
+        /**
+         * Encodes the specified C_PASS_STAGE message. Does not implicitly {@link StagePto.C_PASS_STAGE.verify|verify} messages.
+         * @param message C_PASS_STAGE message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: StagePto.IC_PASS_STAGE, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified C_PASS_STAGE message, length delimited. Does not implicitly {@link StagePto.C_PASS_STAGE.verify|verify} messages.
+         * @param message C_PASS_STAGE message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: StagePto.IC_PASS_STAGE, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a C_PASS_STAGE message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns C_PASS_STAGE
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): StagePto.C_PASS_STAGE;
+
+        /**
+         * Decodes a C_PASS_STAGE message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns C_PASS_STAGE
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): StagePto.C_PASS_STAGE;
+
+        /**
+         * Verifies a C_PASS_STAGE message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a C_PASS_STAGE message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns C_PASS_STAGE
+         */
+        public static fromObject(object: { [k: string]: any }): StagePto.C_PASS_STAGE;
+
+        /**
+         * Creates a plain object from a C_PASS_STAGE message. Also converts values to other types if specified.
+         * @param message C_PASS_STAGE
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: StagePto.C_PASS_STAGE, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this C_PASS_STAGE to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a S_PASS_STAGE. */
+    interface IS_PASS_STAGE {
+
+        /** S_PASS_STAGE cmd */
+        cmd?: (number|null);
+
+        /** S_PASS_STAGE scmd */
+        scmd?: (number|null);
+
+        /** S_PASS_STAGE stageId */
+        stageId?: (number|null);
+    }
+
+    /** Represents a S_PASS_STAGE. */
+    class S_PASS_STAGE implements IS_PASS_STAGE {
+
+        /**
+         * Constructs a new S_PASS_STAGE.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: StagePto.IS_PASS_STAGE);
+
+        /** S_PASS_STAGE cmd. */
+        public cmd: number;
+
+        /** S_PASS_STAGE scmd. */
+        public scmd: number;
+
+        /** S_PASS_STAGE stageId. */
+        public stageId: number;
+
+        /**
+         * Encodes the specified S_PASS_STAGE message. Does not implicitly {@link StagePto.S_PASS_STAGE.verify|verify} messages.
+         * @param message S_PASS_STAGE message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: StagePto.IS_PASS_STAGE, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified S_PASS_STAGE message, length delimited. Does not implicitly {@link StagePto.S_PASS_STAGE.verify|verify} messages.
+         * @param message S_PASS_STAGE message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: StagePto.IS_PASS_STAGE, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a S_PASS_STAGE message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns S_PASS_STAGE
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): StagePto.S_PASS_STAGE;
+
+        /**
+         * Decodes a S_PASS_STAGE message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns S_PASS_STAGE
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): StagePto.S_PASS_STAGE;
+
+        /**
+         * Verifies a S_PASS_STAGE message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a S_PASS_STAGE message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns S_PASS_STAGE
+         */
+        public static fromObject(object: { [k: string]: any }): StagePto.S_PASS_STAGE;
+
+        /**
+         * Creates a plain object from a S_PASS_STAGE message. Also converts values to other types if specified.
+         * @param message S_PASS_STAGE
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: StagePto.S_PASS_STAGE, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this S_PASS_STAGE to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };

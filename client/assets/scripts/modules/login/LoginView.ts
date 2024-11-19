@@ -18,6 +18,11 @@ export default class BattleView extends BaseView {
         this.initTogglerContainer();
     }
 
+    onClose(): void {        
+    }
+
+    changeListener(enable:boolean){}
+
     private initTogglerContainer() {
         const urlKeys = Object.keys(LoginUrls);
 

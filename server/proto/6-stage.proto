@@ -1,0 +1,14 @@
+syntax = "proto3";
+package StagePto;
+
+message C_PASS_STAGE{
+	int32 cmd = 1[default = 6];
+	int32 scmd = 2[default = 1];
+	int32 stageId = 3;
+}
+
+message S_PASS_STAGE{
+	int32 cmd = 1[default = 6];
+	int32 scmd = 2[default = 2];
+	int32 stageId = 3;
+}

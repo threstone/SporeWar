@@ -16,8 +16,14 @@ export default class StageBtn extends cc.Component {
     private _cfg: StageCfg
 
     setStage(cfg: StageCfg) {
-        this.label.string = `关卡${cfg.id}${UserVo.ins().stageId < cfg.id ? '(未解锁)' : ''}`;
+        const isUnlock = UserVo.ins().stageId >= cfg.id;
+        this.label.string = `关卡${cfg.id}${isUnlock ? '' : '(未解锁)'}`;
+        this.label.node.parent.color = isUnlock ? cc.Color.WHITE : cc.Color.GRAY;
         this._cfg = cfg;
+
+        if (isUnlock && UserVo.ins().stageId > cfg.id) {
+            this.label.string += '(已通关)';
+        }
     }
 
     onClick() {
@@ -29,6 +35,6 @@ export default class StageBtn extends cc.Component {
         if (simulator) {
             return;
         }
-        Notifier.send(NotifyID.StartBattle, SimulatorTypeEnum.Local, this._cfg.mapId, UserVo.ins().userId, Robot.userId, 60);
+        Notifier.send(NotifyID.StageChallengeStart, this._cfg);
     }
 }

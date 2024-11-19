@@ -13,7 +13,7 @@ export class MatchHandler {
             player.serverId,
             0,
         );
-        session.sendMessage(new MatchPto.S_START_MATCHING({ startTime: Date.now() }));
+        session.sendMessage(new MatchPto.S_START_MATCHING());
     }
 
     static async C_CANCEL_MATCHING(session: Session, player: Player, msg: MatchPto.C_CANCEL_MATCHING) {

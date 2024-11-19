@@ -44,9 +44,14 @@ export default class BattleView extends BaseView {
         this._uiView = this.node.getChildByName('uiNode').getComponent(BattleUIView);
     }
 
-    onOpen(...args: any[]): void {
-
+    onOpen(): void {
+        this._arrow.active = false;
     }
+
+    onClose(): void {
+    }
+
+    changeListener(enable: boolean) { }
 
     startBattle() {
         cc.resources.load(BattleModel.ins().simulator.mapConfig.bgPath, cc.SpriteFrame, (err, spriteFrame) => {

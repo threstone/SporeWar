@@ -11,7 +11,6 @@ message C_START_MATCHING{
 message S_START_MATCHING{
 	int32 cmd = 1[default = 4];
 	int32 scmd = 2[default = 2];
-	uint64 startTime = 3;	
 }
 
 // 取消匹配

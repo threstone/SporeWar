@@ -32,6 +32,7 @@ export class ViewMgr extends SingleClass {
                         const baseView = node.getComponent(BaseView);
                         baseView.prefabPath = path;
                         baseView.onOpen(...args);
+                        baseView.changeListener(true);
                         this._viewMap.set(path, node);
                         this._canvas.addChild(node);
                         resolve(node);
@@ -44,6 +45,9 @@ export class ViewMgr extends SingleClass {
     closeView(path: string) {
         const view = this._viewMap.get(path);
         if (view) {
+            const baseView = view.getComponent(BaseView);
+            baseView.onClose();
+            baseView.changeListener(false);
             view.active = false;
             view.parent = null;
         }

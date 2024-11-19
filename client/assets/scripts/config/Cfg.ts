@@ -1,3 +1,5 @@
+import { DropPoolCfgReader } from "./DropPoolCfg";
+import { ItemsCfgReader } from "./ItemsCfg";
 import { MapCfgReader } from "./MapCfg";
 import { BuildingCfgReader } from "./BuildingCfg";
 import { SporeCfgReader } from "./SporeCfg";
@@ -7,6 +9,14 @@ import { StageCfgReader } from "./StageCfg";
 import LZString = require("../util/lzstring");
 class _Cfg {
     
+    private _DropPool = new DropPoolCfgReader();
+    public get DropPool() : DropPoolCfgReader {
+        return this._DropPool;
+    }
+    private _Items = new ItemsCfgReader();
+    public get Items() : ItemsCfgReader {
+        return this._Items;
+    }
     private _Map = new MapCfgReader();
     public get Map() : MapCfgReader {
         return this._Map;
@@ -25,7 +35,7 @@ class _Cfg {
     }
 
     private keyjs = {};
-    public keyJson = {'Map': 1, 'Building': 1, 'Spore': 1, 'Stage': 1, };
+    public keyJson = {'DropPool': 1, 'Items': 1, 'Map': 1, 'Building': 1, 'Spore': 1, 'Stage': 1, };
     /*async initByMergeJson() {
         //cc.log("Cfg.initByMergeJson start:" + new Date().getTime());
         return new Promise((resolve, reject)=>{

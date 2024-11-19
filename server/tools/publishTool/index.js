@@ -11,9 +11,9 @@ const publishList = ['platform', 'game']
 // 更新代码
 const tempAppPath = path.join(__dirname, `../../${publishList[0]}/`, 'tsconfig_dist.json');
 const outPath = path.join(tempAppPath, '../', require(tempAppPath).compilerOptions.outDir, '../');
-console.log('git pull\n', childProcess.execSync(`git pull`, { cwd: outPath }).toString());
-console.log(`git checkout ${branch}\n`, childProcess.execSync(`git checkout ${branch}`, { cwd: outPath }).toString());
-console.log('git pull\n', childProcess.execSync(`git pull`, { cwd: outPath }).toString());
+// console.log('git pull\n', childProcess.execSync(`git pull`, { cwd: outPath }).toString());
+// console.log(`git checkout ${branch}\n`, childProcess.execSync(`git checkout ${branch}`, { cwd: outPath }).toString());
+// console.log('git pull\n', childProcess.execSync(`git pull`, { cwd: outPath }).toString());
 
 let packageInfo;
 for (let index = 0; index < publishList.length; index++) {
@@ -25,14 +25,14 @@ fs.writeFileSync(path.join(outPath, 'package.json'), JSON.stringify(packageInfo)
 console.log('合并写入package.json完成');
 
 // 提交发布内容
-console.log('git add -all\n', childProcess.execSync(`git add --all`, { cwd: outPath }).toString());
-const status = childProcess.execSync(`git status`, { cwd: outPath }).toString();
-console.log('git status"\n', status);
-if (status.indexOf("nothing to commit") !== -1) {
-    return;
-}
-console.log('git commit -m "publish"\n', childProcess.execSync(`git commit -m "publish"`, { cwd: outPath }).toString());
-console.log('git push\n', childProcess.execSync(`git push`, { cwd: outPath }).toString());
+// console.log('git add -all\n', childProcess.execSync(`git add --all`, { cwd: outPath }).toString());
+// const status = childProcess.execSync(`git status`, { cwd: outPath }).toString();
+// console.log('git status"\n', status);
+// if (status.indexOf("nothing to commit") !== -1) {
+//     return;
+// }
+// console.log('git commit -m "publish"\n', childProcess.execSync(`git commit -m "publish"`, { cwd: outPath }).toString());
+// console.log('git push\n', childProcess.execSync(`git push`, { cwd: outPath }).toString());
 
 function publish(appName) {
     console.log(`开始发布:`, appName);

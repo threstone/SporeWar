@@ -1770,7 +1770,6 @@ $root.MatchPto = (function() {
 
         S_START_MATCHING.prototype.cmd = 4;
         S_START_MATCHING.prototype.scmd = 2;
-        S_START_MATCHING.prototype.startTime = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
 
         S_START_MATCHING.encode = function encode(m, w) {
             if (!w)
@@ -1779,8 +1778,6 @@ $root.MatchPto = (function() {
                 w.uint32(8).int32(m.cmd);
             if (m.scmd != null && Object.hasOwnProperty.call(m, "scmd"))
                 w.uint32(16).int32(m.scmd);
-            if (m.startTime != null && Object.hasOwnProperty.call(m, "startTime"))
-                w.uint32(24).uint64(m.startTime);
             return w;
         };
 
@@ -1796,9 +1793,6 @@ $root.MatchPto = (function() {
                     break;
                 case 2:
                     m.scmd = r.int32();
-                    break;
-                case 3:
-                    m.startTime = r.uint64();
                     break;
                 default:
                     r.skipType(t & 7);
@@ -2479,6 +2473,117 @@ $root.BattlePto = (function() {
     })();
 
     return BattlePto;
+})();
+
+$root.StagePto = (function() {
+
+    var StagePto = {};
+
+    StagePto.C_PASS_STAGE = (function() {
+
+        function C_PASS_STAGE(p) {
+            if (p)
+                for (var ks = Object.keys(p), i = 0; i < ks.length; ++i)
+                    if (p[ks[i]] != null)
+                        this[ks[i]] = p[ks[i]];
+        }
+
+        C_PASS_STAGE.prototype.cmd = 6;
+        C_PASS_STAGE.prototype.scmd = 1;
+        C_PASS_STAGE.prototype.stageId = 0;
+
+        C_PASS_STAGE.encode = function encode(m, w) {
+            if (!w)
+                w = $Writer.create();
+            if (m.cmd != null && Object.hasOwnProperty.call(m, "cmd"))
+                w.uint32(8).int32(m.cmd);
+            if (m.scmd != null && Object.hasOwnProperty.call(m, "scmd"))
+                w.uint32(16).int32(m.scmd);
+            if (m.stageId != null && Object.hasOwnProperty.call(m, "stageId"))
+                w.uint32(24).int32(m.stageId);
+            return w;
+        };
+
+        C_PASS_STAGE.decode = function decode(r, l) {
+            if (!(r instanceof $Reader))
+                r = $Reader.create(r);
+            var c = l === undefined ? r.len : r.pos + l, m = new $root.StagePto.C_PASS_STAGE();
+            while (r.pos < c) {
+                var t = r.uint32();
+                switch (t >>> 3) {
+                case 1:
+                    m.cmd = r.int32();
+                    break;
+                case 2:
+                    m.scmd = r.int32();
+                    break;
+                case 3:
+                    m.stageId = r.int32();
+                    break;
+                default:
+                    r.skipType(t & 7);
+                    break;
+                }
+            }
+            return m;
+        };
+
+        return C_PASS_STAGE;
+    })();
+
+    StagePto.S_PASS_STAGE = (function() {
+
+        function S_PASS_STAGE(p) {
+            if (p)
+                for (var ks = Object.keys(p), i = 0; i < ks.length; ++i)
+                    if (p[ks[i]] != null)
+                        this[ks[i]] = p[ks[i]];
+        }
+
+        S_PASS_STAGE.prototype.cmd = 6;
+        S_PASS_STAGE.prototype.scmd = 2;
+        S_PASS_STAGE.prototype.stageId = 0;
+
+        S_PASS_STAGE.encode = function encode(m, w) {
+            if (!w)
+                w = $Writer.create();
+            if (m.cmd != null && Object.hasOwnProperty.call(m, "cmd"))
+                w.uint32(8).int32(m.cmd);
+            if (m.scmd != null && Object.hasOwnProperty.call(m, "scmd"))
+                w.uint32(16).int32(m.scmd);
+            if (m.stageId != null && Object.hasOwnProperty.call(m, "stageId"))
+                w.uint32(24).int32(m.stageId);
+            return w;
+        };
+
+        S_PASS_STAGE.decode = function decode(r, l) {
+            if (!(r instanceof $Reader))
+                r = $Reader.create(r);
+            var c = l === undefined ? r.len : r.pos + l, m = new $root.StagePto.S_PASS_STAGE();
+            while (r.pos < c) {
+                var t = r.uint32();
+                switch (t >>> 3) {
+                case 1:
+                    m.cmd = r.int32();
+                    break;
+                case 2:
+                    m.scmd = r.int32();
+                    break;
+                case 3:
+                    m.stageId = r.int32();
+                    break;
+                default:
+                    r.skipType(t & 7);
+                    break;
+                }
+            }
+            return m;
+        };
+
+        return S_PASS_STAGE;
+    })();
+
+    return StagePto;
 })();
 
 module.exports = $root;

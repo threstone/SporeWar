@@ -6,6 +6,7 @@ const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class ResultView extends BaseView {
+   
     @property(cc.Node)
     winSp: cc.Node = null;
 
@@ -16,6 +17,11 @@ export default class ResultView extends BaseView {
         this.winSp.active = winUserId === UserVo.ins().userId;
         this.loseSp.active = winUserId !== UserVo.ins().userId;
     }
+
+    onClose(): void {
+    }
+
+    changeListener(enable:boolean){}
 
     close(): void {
         ViewMgr.ins().closeView('/prefab/battle/BattleView');

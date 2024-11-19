@@ -11,10 +11,15 @@ export default class MatchView extends BaseView {
 
     private _startTime: number;
 
-    onOpen(startTime: number): void {
+    onOpen(): void {
         this.timeLabel.string = '0s';
-        this._startTime = startTime;
+        this._startTime = Date.now();
     }
+
+    onClose(): void {
+    }
+
+    changeListener(enable:boolean){}
 
     onCancelBtnClick() {
         MatchModel.ins().stopMatching();

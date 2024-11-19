@@ -13,8 +13,8 @@
             "password": "123456",
             "timezone": "+08:00"
         },
-        "loginServerPort": 1234,
-        "manageServerPort": 1235,
+        "loginServerPort": 9905,
+        "manageServerPort": 9906,
         "loginKey": "abcdef",
         "signKey": "abc"
     }
