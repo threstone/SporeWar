@@ -2,9 +2,9 @@
     "dev": {
         "master": {
             "ip": "127.0.0.1",
-            "port": 9910,
+            "port": 22021,
             "rpcPorts": [
-                9911
+                22022
             ],
             "isCreateRpcDeclare": true
         },
@@ -13,7 +13,7 @@
                 "nodeId": "gate1",
                 "autuResume": false,
                 "ip": "192.168.20.61",
-                "port": 20001,
+                "port": 22101,
                 "logTrace": true,
                 "logLevel": "all"
             },
@@ -21,7 +21,7 @@
                 "nodeId": "gate2",
                 "autuResume": false,
                 "ip": "192.168.20.61",
-                "port": 20002,
+                "port": 22102,
                 "logTrace": true,
                 "logLevel": "all"
             }
@@ -47,7 +47,7 @@
                 "logTrace": true,
                 "logLevel": "all",
                 "ip": "192.168.20.61",
-                "port": 21001
+                "port": 22201
             },
             {
                 "nodeId": "battle2",
@@ -55,7 +55,7 @@
                 "logTrace": true,
                 "logLevel": "all",
                 "ip": "192.168.20.61",
-                "port": 21002
+                "port": 22202
             }
         ],
         "match": [

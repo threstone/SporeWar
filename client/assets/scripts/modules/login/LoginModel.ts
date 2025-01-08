@@ -35,6 +35,6 @@ export class LoginModel extends BaseModel {
 
 export const LoginUrls = {
     ['积木服']: "http://192.168.20.61:9905/login",
-    ['测试服']: "http://120.79.23.102:9905/login",
+    ['测试服']: "http://120.79.23.102:22001/login",
     ['积木222']: "http://192.168.20.61:9905/login",
 }
